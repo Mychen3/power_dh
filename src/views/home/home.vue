@@ -9,7 +9,7 @@
           :trigger="null"
           @breakpoint="onBreakpoint">
         <div class="logo">
-        <img :src="login" alt="logo" >
+          <img :src="login" alt="logo">
           <span v-show="!collapsed"> 前端导航</span>
         </div>
         <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
@@ -31,8 +31,14 @@
         <div>
           <a-layout-header>
             <div>
-              <menu-unfold-outlined v-if="collapsed" class="trigger" @click="collapsedOpen"/>
-              <menu-fold-outlined v-else class="trigger" @click="collapsedClose"/>
+              <div class="top-left">
+                <menu-unfold-outlined v-if="collapsed" class="trigger" @click="collapsedOpen"/>
+                <menu-fold-outlined v-else class="trigger" @click="collapsedClose"/>
+                <bread></bread>
+              </div>
+              <div class="top-right">
+              <topright></topright>
+              </div>
             </div>
           </a-layout-header>
           <a-layout-content>
@@ -51,6 +57,8 @@ import {Layout, Menu} from "ant-design-vue";
 import {UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined,} from '@ant-design/icons-vue';
 import {collapsed, brokenData, shrinkWidth, siderPosition, showMask} from './hooks/headerData'
 import {collapsedOpen, collapsedClose, maskClose} from './hooks/useMenuMethods'
+import bread from './components/topcomponents/bread.vue'
+import topright from './components/topcomponents/topright.vue'
 import {login} from 'ass/pictureData'
 import {watch} from 'vue'
 
@@ -70,7 +78,6 @@ watch(brokenData, (newV: boolean): void => {
     shrinkWidth.value = 48
     siderPosition.value = 'relative'
     showMask.value = false
-
   }
 })
 
@@ -85,6 +92,7 @@ watch(brokenData, (newV: boolean): void => {
   position: v-bind(siderPosition);
   z-index: 1;
 }
+
 
 
 </style>
