@@ -9,7 +9,15 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
 //    "typeRoots": ["src/@types", "./node_modules/@types"],
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    // 配置别名
+    "baseUrl": "./",
+    "paths": {
+	  // 根据别名配置相关路径
+      "@": ["src"],
+      "hk":["src/hooks/*"]
+    
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

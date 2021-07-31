@@ -22,7 +22,7 @@
       </a-breadcrumb>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import {Breadcrumb} from 'ant-design-vue'
 
 </script>

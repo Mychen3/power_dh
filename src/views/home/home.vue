@@ -10,7 +10,7 @@
           @breakpoint="onBreakpoint">
         <div class="logo">
           <img :src="login" alt="logo">
-          <span v-show="!collapsed"> 前端导航</span>
+          <span v-show="!collapsed">{{MENU_NAME}}</span>
         </div>
         <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
           <a-menu-item key="1">
@@ -60,6 +60,7 @@ import {collapsedOpen, collapsedClose, maskClose} from './hooks/useMenuMethods'
 import bread from './components/topcomponents/bread.vue'
 import topright from './components/topcomponents/topright.vue'
 import {login} from 'ass/pictureData'
+import {MENU_NAME} from '@/config/nameConfig'
 import {watch} from 'vue'
 
 

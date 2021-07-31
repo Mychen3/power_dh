@@ -1,15 +1,16 @@
 <template>
   <div class="topright-content">
     <div @click="handleFullScreen">
-      <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg"/>
-      <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg"/>
+      <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg" />
+      <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg" />
     </div>
     <div>
       <a-popover trigger="click">
         <template #content>
-          <div class="popover-content">
-            <a-divider>代办事件
-              <CoffeeOutlined style="color:rgb(70,167,218)"/>
+          <div class="popover-content" ref="scrollRef">
+            <a-divider
+              >代办事件
+              <CoffeeOutlined style="color: rgb(70, 167, 218)" />
             </a-divider>
             <a-card class="popover-card">
               <span>123123123123123123123123123123123112312323</span>
@@ -33,7 +34,7 @@
         </template>
         <div class="popover-badge">
           <a-badge dot>
-            <BellOutlined style="font-size: 17px"/>
+            <BellOutlined style="font-size: 17px" />
           </a-badge>
         </div>
       </a-popover>
@@ -41,27 +42,42 @@
     <div>
       <a-avatar size="small">
         <template #icon>
-          <UserOutlined/>
+          <UserOutlined />
         </template>
       </a-avatar>
     </div>
-
   </div>
 </template>
 
-<script setup>
-import {Space, Badge, Popover, Avatar, Divider, Card} from 'ant-design-vue'
+<script setup lang="ts">
+import { Space, Badge, Popover, Avatar, Divider, Card } from "ant-design-vue";
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
   BellOutlined,
   UserOutlined,
-  CoffeeOutlined
-} from '@ant-design/icons-vue';
-import {handleFullScreen, FullScreenImg} from '../../hooks/useFullScreen'
+  CoffeeOutlined,
+} from "@ant-design/icons-vue";
+import { handleFullScreen, FullScreenImg } from "../../hooks/useFullScreen";
+import { scrollRef, scrollLoadDown } from "../../hooks/usescroll";
+    /* @ts-ignore */
+import throttle from 'hk/usethrottle'
+import { watch } from "vue";
 
 
+  
+
+// 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
+watch(
+  () => scrollRef,
+  (newV: HTMLElement | object): void => {
+    document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown,1000));
+  },
+  { deep: true }
+);
 </script>
+
+
 
 <style scoped lang="scss">
 .topright-content {
@@ -80,7 +96,6 @@ import {handleFullScreen, FullScreenImg} from '../../hooks/useFullScreen'
   }
 }
 
-
 .popover-badge {
   width: 100%;
   height: 100%;
@@ -98,8 +113,7 @@ import {handleFullScreen, FullScreenImg} from '../../hooks/useFullScreen'
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
-  word-break: break-all
-
+  word-break: break-all;
 }
 
 .popover-content::-webkit-scrollbar {
@@ -113,14 +127,14 @@ import {handleFullScreen, FullScreenImg} from '../../hooks/useFullScreen'
   border-radius: 10px;
   background-color: skyblue;
   background-image: -webkit-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.2) 25%,
-          transparent 25%,
-          transparent 50%,
-          rgba(255, 255, 255, 0.2) 50%,
-          rgba(255, 255, 255, 0.2) 75%,
-          transparent 75%,
-          transparent
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
   );
 }
 
@@ -132,8 +146,5 @@ import {handleFullScreen, FullScreenImg} from '../../hooks/useFullScreen'
 }
 
 @media screen and (max-width: 991.98px) {
-
-
 }
-
 </style>

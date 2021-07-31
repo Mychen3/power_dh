@@ -1,0 +1,1 @@
+export const MENU_NAME:string = '前端导航'
