@@ -4,7 +4,7 @@
 * @param: delay 需要延迟的时间
 * */
 
-function throttle(fn: Function, delay: number = 1000): Function | any {
+export default function throttle(fn: Function, delay: number = 1000): Function | any {
 
     let timer: null | object
     return function () {
@@ -23,4 +23,3 @@ function throttle(fn: Function, delay: number = 1000): Function | any {
     }
 }
 
-export default throttle;
