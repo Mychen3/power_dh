@@ -6,7 +6,7 @@ interface metaType {
 }
 
 interface router extends metaType {
-    path?: string,
+    path: string,
     name?: string,
     redirect?: string,
     meta?: metaType,
