@@ -4,16 +4,11 @@ import { message } from 'ant-design-vue'
 const scrollRef = ref<HTMLElement>()
 
 
-
-
 /*
 @name: 监听下拉触底加载数据
 @return: void
 */
 const scrollLoadDown = (): void => {
-
-    console.log(typeof scrollRef.value?.scrollHeight);
-
     // 滚动条完整部分高度
     let scrollHeight = ref<string>(scrollRef.value?.scrollHeight + '' as string)
     // 正在显示的高度
@@ -23,11 +18,7 @@ const scrollLoadDown = (): void => {
 
     if (parseInt(clientHeight.value) + parseInt(scrollTop.value) == parseInt(scrollHeight.value)) {
 
-
     }
-
-
-
 }
 
 export {

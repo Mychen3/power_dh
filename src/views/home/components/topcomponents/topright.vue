@@ -60,11 +60,8 @@ import {
 } from "@ant-design/icons-vue";
 import { handleFullScreen, FullScreenImg } from "../../hooks/useFullScreen";
 import { scrollRef, scrollLoadDown } from "../../hooks/usescroll";
-
 import throttle from 'hk/usethrottle'
 import { watch } from "vue";
-
-
 
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素

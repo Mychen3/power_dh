@@ -24,7 +24,6 @@ const collapsedClose = (): void => {
     }
 }
 
-
 /*
 * @name: 点击遮罩层关闭
 * @type: ''

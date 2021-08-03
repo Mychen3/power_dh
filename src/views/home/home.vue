@@ -63,13 +63,10 @@ import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import {watch} from 'vue'
 
-
-
 // 触发响应式布局断点时的回调
 const onBreakpoint = (broken: boolean): void => {
   brokenData.value = broken
 }
-
 
 watch(brokenData, (newV: boolean): void => {
   if (newV) {
@@ -82,7 +79,6 @@ watch(brokenData, (newV: boolean): void => {
     showMask.value = false
   }
 })
-
 
 </script>
 
