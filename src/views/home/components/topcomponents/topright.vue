@@ -1,16 +1,16 @@
 <template>
   <div class="topright-content">
     <div @click="handleFullScreen">
-      <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg" />
-      <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg" />
+      <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg"/>
+      <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg"/>
     </div>
     <div>
       <a-popover trigger="click">
         <template #content>
           <div class="popover-content" ref="scrollRef">
             <a-divider
-              >代办事件
-              <CoffeeOutlined style="color: rgb(70, 167, 218)" />
+            >代办事件
+              <CoffeeOutlined style="color: rgb(70, 167, 218)"/>
             </a-divider>
             <a-card class="popover-card">
               <span>123123123123123123123123123123123112312323</span>
@@ -34,46 +34,64 @@
         </template>
         <div class="popover-badge">
           <a-badge dot>
-            <BellOutlined style="font-size: 17px" />
+            <BellOutlined style="font-size: 17px"/>
           </a-badge>
         </div>
       </a-popover>
     </div>
     <div>
-      <a-avatar size="small">
-        <template #icon>
-          <UserOutlined />
+      <a-popover >
+        <template #content>
+          <div class="topright-login">
+            <div @click="showDrawer = true">
+              <SmileOutlined/>
+              <span>登录账号</span>
+            </div>
+            <div>
+              <SkinOutlined />
+              <span>注册账号</span>
+            </div>
+          </div>
         </template>
-      </a-avatar>
+        <a-avatar size="small">
+          <template #icon>
+            <UserOutlined/>
+          </template>
+        </a-avatar>
+      </a-popover>
     </div>
+
+
   </div>
 </template>
 
 <script setup lang="ts">
-import { Space, Badge, Popover, Avatar, Divider, Card } from "ant-design-vue";
+import {Space, Badge, Popover, Avatar, Divider, Card} from "ant-design-vue";
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
   BellOutlined,
   UserOutlined,
   CoffeeOutlined,
+  SmileOutlined,
+  SkinOutlined
 } from "@ant-design/icons-vue";
-import { handleFullScreen, FullScreenImg } from "../../hooks/useFullScreen";
-import { scrollRef, scrollLoadDown } from "../../hooks/usescroll";
+import {handleFullScreen, FullScreenImg} from "../../hooks/useFullScreen";
+import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
-import { watch } from "vue";
+import {watch,ref} from "vue";
 
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
+
 watch(
-  () => scrollRef,
-  (newV: HTMLElement | object): void => {
-    document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown,1000));
-  },
-  { deep: true }
+    () => scrollRef,
+    (newV: HTMLElement | object): void => {
+      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000));
+    },
+    {deep: true}
 );
 </script>
-
 
 
 <style scoped lang="scss">
@@ -124,14 +142,14 @@ watch(
   border-radius: 10px;
   background-color: skyblue;
   background-image: -webkit-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
+          45deg,
+          rgba(255, 255, 255, 0.2) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.2) 50%,
+          rgba(255, 255, 255, 0.2) 75%,
+          transparent 75%,
+          transparent
   );
 }
 
@@ -142,6 +160,37 @@ watch(
   border-radius: 10px;
 }
 
-@media screen and (max-width: 991.98px) {
+.topright-login {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  font-size: 16px;
+
+
+  & > div {
+    text-align: center;
+    line-height: 35px;
+    height: 35px;
+    width: 100%;
+    position: relative;
+  }
+
+  & > div:hover {
+    background-color: rgb(246, 246, 246);
+    cursor:pointer;
+  }
+
+  & > div > span {
+    margin-left: 5px;
+  }
+
+
+
 }
+
+@media screen and (max-width: 991.98px) {
+
+}
+
+
 </style>
