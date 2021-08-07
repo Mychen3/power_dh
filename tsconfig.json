@@ -26,6 +26,9 @@
       ],
       "ass/*": [
         "src/assets/*"
+      ],
+      "comp/*": [
+        "src/components/*"
       ]
     }
   },

@@ -15,7 +15,8 @@ export default defineConfig({
             'view':resolve(__dirname,'src/views'),
             'hk':resolve(__dirname,'src/hooks'),
             'ut':resolve(__dirname,'src/utils'),
-            'ass':resolve(__dirname,'src/assets')
+            'ass':resolve(__dirname,'src/assets'),
+            'comp':resolve(__dirname,'src/components')
         }
     },
     css: {

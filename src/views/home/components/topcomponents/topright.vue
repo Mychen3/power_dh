@@ -40,7 +40,7 @@
       </a-popover>
     </div>
     <div>
-      <a-popover >
+      <a-popover>
         <template #content>
           <div class="topright-login">
             <div @click="showDrawer = true">
@@ -48,7 +48,7 @@
               <span>登录账号</span>
             </div>
             <div>
-              <SkinOutlined />
+              <SkinOutlined/>
               <span>注册账号</span>
             </div>
           </div>
@@ -60,13 +60,20 @@
         </a-avatar>
       </a-popover>
     </div>
-
+    <a-drawer
+        :width="drawerWidth"
+        placement="right"
+        :closable="false"
+        :bodyStyle="drawer_sty.sty"
+        v-model:visible="showDrawer">
+      <login></login>
+    </a-drawer>
 
   </div>
 </template>
 
 <script setup lang="ts">
-import {Space, Badge, Popover, Avatar, Divider, Card} from "ant-design-vue";
+import {Space, Badge, Popover, Avatar, Divider, Card, Drawer} from "ant-design-vue";
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
@@ -74,16 +81,28 @@ import {
   UserOutlined,
   CoffeeOutlined,
   SmileOutlined,
-  SkinOutlined
+  SkinOutlined,
 } from "@ant-design/icons-vue";
 import {handleFullScreen, FullScreenImg} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
-import {watch,ref} from "vue";
+import login from './login.vue'
+import {watch, ref, reactive} from "vue";
+import type {drawerSty} from '../../hooks/login'
 
+const showDrawer = ref<boolean>(false)
+const drawerWidth =ref<number>(450)
+
+const drawer_sty = reactive({
+  sty: {
+    margin: 0,
+    padding: 0,
+    width: '100%',
+    height: '100%'
+  } as drawerSty
+})
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
-
 watch(
     () => scrollRef,
     (newV: HTMLElement | object): void => {
@@ -163,7 +182,7 @@ watch(
 .topright-login {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 120px;
   font-size: 16px;
 
 
@@ -177,15 +196,12 @@ watch(
 
   & > div:hover {
     background-color: rgb(246, 246, 246);
-    cursor:pointer;
+    cursor: pointer;
   }
 
   & > div > span {
-    margin-left: 5px;
+    margin-left: 10px;
   }
-
-
-
 }
 
 @media screen and (max-width: 991.98px) {
