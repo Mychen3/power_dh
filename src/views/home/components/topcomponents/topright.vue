@@ -43,7 +43,7 @@
       <a-popover>
         <template #content>
           <div class="topright-login">
-            <div @click="showDrawer = true">
+            <div @click="onShowLogin">
               <SmileOutlined/>
               <span>登录账号</span>
             </div>
@@ -86,21 +86,53 @@ import {
 import {handleFullScreen, FullScreenImg} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
-import login from './login.vue'
+import login from './webLogin.vue'
 import {watch, ref, reactive} from "vue";
 import type {drawerSty} from '../../hooks/login'
 
+    // 控制抽屉显示隐藏
 const showDrawer = ref<boolean>(false)
+  // 抽屉宽度
 const drawerWidth =ref<number>(450)
+ // 页面宽度
+const changewidth = ref<Number>(993)
+
 
 const drawer_sty = reactive({
   sty: {
     margin: 0,
     padding: 0,
     width: '100%',
-    height: '100%'
-  } as drawerSty
+    height: '100%'} as drawerSty
 })
+
+
+/*
+@name: 监听页面大小回调函数
+@return: void
+*/
+const onresize_change =():void=>{
+  changewidth.value = document.documentElement.clientWidth
+}
+
+
+
+/*
+@name: 点击登录识别是是小屏登录还是大屏
+@return: void
+*/
+const onShowLogin =():void=>{
+         if(changewidth.value > 992){
+          showDrawer.value = true
+         }
+
+}
+
+
+
+// 节流回调函数监听页面大小
+window.onresize = throttle(onresize_change,1000)
+
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
 watch(

@@ -1,14 +1,14 @@
 <template>
   <div class="login-content">
     <div class="login-box">
-      <h1>L O G I N</h1>
+      <h1 >L O G I N</h1>
       <a-space direction="vertical">
         <a-form >
           <a-form-item>
-           <logInput  placeholder="email" v-model="inputValue"></logInput>
+           <logInput  placeholder="email" @blur="blurPanda" @focus="focusPanda" v-model="inputValue"></logInput>
           </a-form-item>
           <a-form-item >
-            <logInput placeholder="password" v-model="inputValue"  ></logInput>
+            <logInput placeholder="password" @focus="pwdFocusPanda" @blur="blurPanda" v-model="inputValue"></logInput>
           </a-form-item>
           <a-form-item style="text-align: center">
           <a-button  type="primary"  style="width: 200px">GO</a-button>
@@ -20,12 +20,14 @@
 </template>
 
 <script setup lang="ts">
-import {signin1, signin2, signin3} from 'ass/pictureData'
+
 import {Space,Form,Input,Button} from 'ant-design-vue'
 import {ref} from  'vue'
 import logInput from 'comp/logInput.vue'
+import {loginBgc,focusPanda,blurPanda,pwdFocusPanda} from '../../hooks/usePandaChange'
 
-const loginBgc = ref<String>(`url(${signin1}) no-repeat center /190px 150px`)
+
+  
 const inputValue = ref<String>('')
 
 </script>
@@ -45,7 +47,7 @@ const inputValue = ref<String>('')
 
 .login-box {
   width: 85%;
-  height: 40%;
+  height: 50%;
   background-color: white;
   border-radius: 8px;
   position: relative;
@@ -57,11 +59,11 @@ const inputValue = ref<String>('')
 
   &:before {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 10vw;
+    height: 10vw;
     content: '';
-    top: -130px;
-    left: 100px;
+    top: -7vw;
+    left: 27%;
     background: v-bind(loginBgc)
 
   }
