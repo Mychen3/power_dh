@@ -1,6 +1,6 @@
 <template>
   <div class="input-content">
-    <input @focus="handleinputFocus" @blur="handleinputBlur" type="text" v-model="inputValue" required>
+    <input @focus="handleinputFocus" @blur="handleinputBlur" :type="props.type" v-model="inputValue" required>
     <span class="highlight"></span>
     <span class="bar"></span>
     <label>{{ props.placeholder }}</label>
@@ -13,6 +13,12 @@ import {defineProps, ref, defineEmits} from 'vue'
 const props = defineProps({
   placeholder: String,
   modelValue: String,
+  type:{
+    type:String,
+    default(){
+      return 'text'
+    }
+  }
 })
 
 const inputValue = ref(props.modelValue)

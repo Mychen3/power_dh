@@ -1,3 +1,5 @@
+
+
 interface drawerSty {
     margin: number,
     padding: number,
@@ -5,6 +7,25 @@ interface drawerSty {
     height: string,
 }
 
+interface regusterFrom{
+    nickname:number|string|null,
+    email:string,
+    password:string,
+    twoPassword:string,
+    phone:string,
+    phoneCode:string
+}
+
+
+interface logonFrom{
+    email:string,
+    password:string,
+}
+
+
+
 export {
-    drawerSty
+    drawerSty,
+    regusterFrom,
+    logonFrom
 }

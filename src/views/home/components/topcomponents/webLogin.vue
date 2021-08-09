@@ -1,83 +1,82 @@
 <template>
   <div class="login-content">
-    <div class="anmimate-box" >
-    <transition name="loginTransition">
-    <div class="login-box" v-if="showLogin">
-      <h1 >L O G I N</h1>
-      <a-space direction="vertical">
-        <a-form >
-          <a-form-item>
-           <logInput  placeholder="email" @blur="blurPanda" @focus="focusPanda" v-model="inputValue"></logInput>
-          </a-form-item>
-          <a-form-item >
-            <logInput placeholder="password" @focus="pwdFocusPanda" @blur="blurPanda" v-model="inputValue"></logInput>
-          </a-form-item>
-          <a-form-item style="text-align: center">
-          <a-button  type="primary"  style="width: 200px">GO</a-button>
-          </a-form-item>
-          <a-form-item style="text-align: right">
-           <span>没有账号吗?</span><span class="go-register" @click="showLogin = false" > 前往注册</span>
-          </a-form-item>
-        </a-form>
-      </a-space>
-    </div>
-    </transition>
-    <transition name="loginTransition">
-       <div class="register" v-if="!showLogin">
+    <div class="anmimate-box">
+      <transition name="loginTransition">
+        <div class="login-box" v-if="showLogin">
+          <h1>L O G I N</h1>
+          <a-space direction="vertical">
+            <a-form :model="loginFrom">
+              <a-form-item name="email">
+                <logInput v-model:value="loginFrom.email" placeholder="email" @blur="blurPanda" @focus="focusPanda"
+                          v-model="inputValue"></logInput>
+              </a-form-item>
+              <a-form-item>
+                <logInput v-model:value="loginFrom.password" type="password" placeholder="password"
+                          @focus="pwdFocusPanda" @blur="blurPanda" v-model="inputValue"></logInput>
+              </a-form-item>
+              <a-form-item style="text-align: center">
+                <a-button type="primary" style="width: 200px">GO</a-button>
+              </a-form-item>
+              <a-form-item style="text-align: right">
+                <span>没有账号吗?</span><span class="go-register" @click="showLogin = false"> 前往注册</span>
+              </a-form-item>
+            </a-form>
+          </a-space>
+        </div>
+      </transition>
+      <transition name="loginTransition">
+        <div class="register" v-if="!showLogin">
           <h1>Register with</h1>
-         <a-space direction="vertical">
-           <a-form style="width: 280px" >
-             <a-form-item >
-               <a-input size="large"  placeholder="请输入您的名字" />
-             </a-form-item>
-             <a-form-item>
-               <a-input size="large"  placeholder="请输入您的的邮箱" />
-             </a-form-item>
-             <a-form-item>
-               <a-input size="large"  placeholder="请输入您的的手机号码" />
-             </a-form-item>
-             <a-form-item >
-               <div style="display: flex">
-                 <a-input size="large" style="width: 150px"  placeholder="短信验证码" />
-                 <a-button  type="primary"  style="height: 40px;width: 110px;margin-left: 20px">发送验证码</a-button>
-               </div>
-             </a-form-item>
-             <a-form-item>
-               <a-input size="large"  placeholder="请输入您的密码" />
-             </a-form-item>
-             <a-form-item>
-               <a-input size="large"  placeholder="请再次验证您的密码" />
-             </a-form-item>
-             <a-form-item>
-               <a-button  type="primary" size="large"  style="width: 100%">注册</a-button>
-             </a-form-item>
-             <a-form-item>
-               <a-button    size="large"  style="width: 100%" @click="showLogin = true" >返回</a-button>
-             </a-form-item>
-           </a-form>
-         </a-space>
-       </div>
-
-    </transition>
+          <a-space direction="vertical">
+            <a-form :rules="regusterRules" :model="regusterFrom" style="width: 280px">
+              <a-form-item name="nickname">
+                <a-input size="large" v-model:value='regusterFrom.nickname' placeholder="请输入您的名字"/>
+              </a-form-item>
+              <a-form-item name="email">
+                <a-input size="large" v-model:value="regusterFrom.email" placeholder="请输入您的的邮箱"/>
+              </a-form-item>
+              <a-form-item name="phone">
+                <a-input size="large" v-model:value="regusterFrom.phone" placeholder="请输入您的的手机号码"/>
+              </a-form-item>
+              <a-form-item style="display: flex" name="phoneCode">
+                <a-input v-model:value="regusterFrom.phoneCode" size="large" style="width: 150px" placeholder="短信验证码"/>
+                <a-button type="primary" style="height: 40px;width: 110px;margin-left: 20px">发送验证码</a-button>
+              </a-form-item>
+              <a-form-item name="password">
+                <a-input-password size="large" v-model:value="regusterFrom.password" placeholder="请输入您的密码"/>
+              </a-form-item>
+              <a-form-item name="twoPassword">
+                <a-input-password size="large" v-model:value="regusterFrom.twoPassword" placeholder="请再次验证您的密码"/>
+              </a-form-item>
+              <a-form-item>
+                <a-button type="primary" size="large" style="width: 100%">注册</a-button>
+              </a-form-item>
+              <a-form-item>
+                <a-button size="large" style="width: 100%" @click="showLogin = true">返回</a-button>
+              </a-form-item>
+            </a-form>
+          </a-space>
+        </div>
+      </transition>
     </div>
-    </div>
+  </div>
 
 </template>
 
 <script setup lang="ts">
 
-import {Space,Form,Input,Button} from 'ant-design-vue'
-import {ref} from  'vue'
+import {Space, Form, Input, Button} from 'ant-design-vue'
+import {regusterRules, regusterFrom, loginFrom} from '../../hooks/loginData'
+import {ref} from 'vue'
 import logInput from 'comp/logInput.vue'
-import {loginBgc,focusPanda,blurPanda,pwdFocusPanda} from '../../hooks/usePandaChange'
+import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
 
 const inputValue = ref<String>('')
-const showLogin = ref<boolean>(true)
 
+const showLogin = ref<boolean>(true)
 </script>
 
 <style scoped lang="scss">
-
 .login-content {
   @include boxsize;
   display: flex;
@@ -89,7 +88,7 @@ const showLogin = ref<boolean>(true)
   animation: move 10s infinite;
 }
 
-.anmimate-box{
+.anmimate-box {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -98,7 +97,7 @@ const showLogin = ref<boolean>(true)
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 .login-box {
@@ -112,7 +111,7 @@ const showLogin = ref<boolean>(true)
   align-items: center;
   color: black;
   flex-direction: column;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 
   &:before {
     position: absolute;
@@ -125,9 +124,10 @@ const showLogin = ref<boolean>(true)
 
   }
 }
-.register{
+
+.register {
   width: 85%;
-  height: 60%;
+  height: 70%;
   background-color: white;
   border-radius: 8px;
   position: relative;
@@ -136,14 +136,14 @@ const showLogin = ref<boolean>(true)
   align-items: center;
   color: black;
   flex-direction: column;
- transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 @media screen and (min-width: 1200px) {
 
 }
 
-.loginTransition-enter-active{
+.loginTransition-enter-active {
   animation: login 1s ease 0s 1 normal forwards;
 
 }
@@ -169,9 +169,10 @@ const showLogin = ref<boolean>(true)
     background-position-x: right;
   }
 }
-.go-register{
-  color: rgb(73,197,182);
-  cursor:pointer;
+
+.go-register {
+  color: rgb(73, 197, 182);
+  cursor: pointer;
 }
 
 </style>
