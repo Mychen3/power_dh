@@ -64,14 +64,12 @@
 </template>
 
 <script setup lang="ts">
-
-import {Space, Form, Input, Button} from 'ant-design-vue'
+// import {Space, Form, Input, Button} from 'ant-design-vue'
 import {regusterRules, regusterFrom, loginFrom} from '../../hooks/loginData'
 import {ref} from 'vue'
-import logInput from 'comp/logInput.vue'
 import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
 
-const inputValue = ref<String>('')
+const inputValue = ref<string>('')
 
 const showLogin = ref<boolean>(true)
 </script>

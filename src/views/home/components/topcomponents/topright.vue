@@ -66,14 +66,14 @@
         :closable="false"
         :bodyStyle="drawer_sty.sty"
         v-model:visible="showDrawer">
-      <login></login>
+      <Login></Login>
     </a-drawer>
 
   </div>
 </template>
 
 <script setup lang="ts">
-import {Space, Badge, Popover, Avatar, Divider, Card, Drawer} from "ant-design-vue";
+// import {Space, Badge, Popover, Avatar, Divider, Card, Drawer} from "ant-design-vue";
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
@@ -86,16 +86,16 @@ import {
 import {handleFullScreen, FullScreenImg} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
-import login from './webLogin.vue'
-import {watch, ref, reactive} from "vue";
+import Login from './webLogin.vue'
+import {watch, ref, reactive, onMounted} from "vue";
 import type {drawerSty} from '../../hooks/login'
 
-    // 控制抽屉显示隐藏
+// 控制抽屉显示隐藏
 const showDrawer = ref<boolean>(false)
-  // 抽屉宽度
-const drawerWidth =ref<number>(450)
- // 页面宽度
-const changewidth = ref<Number>(993)
+// 抽屉宽度
+const drawerWidth = ref<number>(450)
+// 页面宽度
+const changewidth = ref<number>(0)
 
 
 const drawer_sty = reactive({
@@ -103,36 +103,34 @@ const drawer_sty = reactive({
     margin: 0,
     padding: 0,
     width: '100%',
-    height: '100%'} as drawerSty
+    height: '100%'
+  } as drawerSty
 })
-
 
 /*
 @name: 监听页面大小回调函数
 @return: void
 */
-const onresize_change =():void=>{
+const onresize_change = (): void => {
   changewidth.value = document.documentElement.clientWidth
+
+  if (changewidth.value < 992) {
+    showDrawer.value = false
+  }
 }
-
-
 
 /*
 @name: 点击登录识别是是小屏登录还是大屏
 @return: void
 */
-const onShowLogin =():void=>{
-         if(changewidth.value > 992){
-          showDrawer.value = true
-         }
-
+const onShowLogin = (): void => {
+  if (changewidth.value > 992) {
+    showDrawer.value = true
+  }
 }
 
-
-
 // 节流回调函数监听页面大小
-window.onresize = throttle(onresize_change,1000)
-
+window.onresize = throttle(onresize_change, 1000)
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
 watch(
@@ -142,8 +140,12 @@ watch(
     },
     {deep: true}
 );
-</script>
 
+onMounted(() => {
+  changewidth.value = document.documentElement.clientWidth
+})
+
+</script>
 
 <style scoped lang="scss">
 .topright-content {

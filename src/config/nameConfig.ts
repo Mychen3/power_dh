@@ -1,1 +1,1 @@
-export const MENU_NAME:string = '前端导航'
+export const MENU_NAME:string = '往的博客导航'

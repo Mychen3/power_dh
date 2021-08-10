@@ -23,15 +23,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import {Breadcrumb} from 'ant-design-vue'
+// import {Breadcrumb} from 'ant-design-vue'
+
+
 
 </script>
 <style scoped lang="scss">
-
 .bread-content {
  margin-left: 10px;
   font-weight: 600;
 }
+
 @media screen and (max-width: 991.98px) {
   .bread-content {
      display: none;

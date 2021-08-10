@@ -1,5 +1,5 @@
 
-
+// 抽屉的样式
 interface drawerSty {
     margin: number,
     padding: number,
@@ -7,6 +7,7 @@ interface drawerSty {
     height: string,
 }
 
+// 注册表单
 interface regusterFrom{
     nickname:number|string|null,
     email:string,
@@ -16,7 +17,7 @@ interface regusterFrom{
     phoneCode:string
 }
 
-
+// 登录表单
 interface logonFrom{
     email:string,
     password:string,

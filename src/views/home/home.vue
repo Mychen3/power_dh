@@ -12,7 +12,7 @@
           <img :src="login" alt="logo">
           <span v-show="!collapsed">{{MENU_NAME}}</span>
         </div>
-        <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
+        <a-menu  theme="dark" mode="inline" >
           <a-menu-item key="1">
             <user-outlined/>
             <span>nav 1</span>
@@ -34,10 +34,10 @@
               <div class="top-left">
                 <menu-unfold-outlined v-if="collapsed" class="trigger" @click="collapsedOpen"/>
                 <menu-fold-outlined v-else class="trigger" @click="collapsedClose"/>
-                <bread></bread>
+                <Bread></Bread>
               </div>
               <div class="top-right">
-              <topright></topright>
+              <Topright></Topright>
               </div>
             </div>
           </a-layout-header>
@@ -53,12 +53,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import {Layout, Menu} from "ant-design-vue";
+// import {Layout, Menu} from "ant-design-vue";
 import {UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined,} from '@ant-design/icons-vue';
 import {collapsed, brokenData, shrinkWidth, siderPosition, showMask} from './hooks/headerData'
 import {collapsedOpen, collapsedClose, maskClose} from './hooks/useMenuMethods'
-import bread from './components/topcomponents/bread.vue'
-import topright from './components/topcomponents/topright.vue'
+import Bread from './components/topcomponents/bread.vue'
+import Topright from './components/topcomponents/topright.vue'
 import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import {watch} from 'vue'
@@ -88,7 +88,7 @@ watch(brokenData, (newV: boolean): void => {
 .ant-layout-sider {
   height: 100%;
   position: v-bind(siderPosition);
-  z-index: 1;
+  z-index: 2;
 }
 
 
