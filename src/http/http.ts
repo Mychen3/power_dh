@@ -12,8 +12,9 @@ const req = (url: string, methods: string): Function => {
                 case 'post' || 'POST':
                      axios.post(url, data).then(res=>{resolve(res)}).catch(err=>{resolve(err)})
                     break;
+                default:
+                    reject('请求失败')
             }
-            reject('请求失败')
         })
     }
 }

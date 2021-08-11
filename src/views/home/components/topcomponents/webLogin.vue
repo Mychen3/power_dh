@@ -7,15 +7,13 @@
           <a-space direction="vertical">
             <a-form :model="loginFrom">
               <a-form-item name="email">
-                <logInput v-model:value="loginFrom.email" placeholder="email" @blur="blurPanda" @focus="focusPanda"
-                          v-model="inputValue"></logInput>
+                <logInput v-model="loginFrom.email" placeholder="email" @blur="blurPanda" @focus="focusPanda"></logInput>
               </a-form-item>
               <a-form-item>
-                <logInput v-model:value="loginFrom.password" type="password" placeholder="password"
-                          @focus="pwdFocusPanda" @blur="blurPanda" v-model="inputValue"></logInput>
+                <logInput v-model="loginFrom.password" type="password" placeholder="password" @focus="pwdFocusPanda" @blur="blurPanda"></logInput>
               </a-form-item>
               <a-form-item style="text-align: center">
-                <a-button type="primary" style="width: 200px">GO</a-button>
+                <a-button @click="on_login" type="primary" style="width: 200px">GO</a-button>
               </a-form-item>
               <a-form-item style="text-align: right">
                 <span>没有账号吗?</span><span class="go-register" @click="showLogin = false"> 前往注册</span>
@@ -68,7 +66,7 @@
 import {regusterRules, regusterFrom, loginFrom} from '../../hooks/loginData'
 import {ref} from 'vue'
 import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
-
+import {on_login} from '../../hooks/useonLogin'
 const inputValue = ref<string>('')
 
 const showLogin = ref<boolean>(true)

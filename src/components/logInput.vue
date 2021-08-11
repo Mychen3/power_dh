@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, ref, defineEmits} from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   placeholder: String,
@@ -52,6 +52,7 @@ input {
   width: 300px;
   border: none;
   border-bottom: 1px solid #757575;
+  box-shadow: none;
 }
 
 input:focus {
@@ -67,6 +68,8 @@ label {
   left: 5px;
   top: 10px;
   transition: 0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
 }
 
 input:focus ~ label, input:valid ~ label {
@@ -129,6 +132,14 @@ input:focus ~ .highlight {
     width: 0;
     background: transparent;
   }
+}
+@-moz-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
 }
 
 </style>

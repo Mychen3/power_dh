@@ -10,6 +10,7 @@ import styleImport from 'vite-plugin-style-import';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src'),
