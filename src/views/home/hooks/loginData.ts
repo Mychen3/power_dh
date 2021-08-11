@@ -1,4 +1,4 @@
-import {reactive} from 'vue'
+import {reactive, ref} from 'vue'
 import {regusterFrom,logonFrom} from '../hooks/login'
 
 const regusterFrom = reactive<regusterFrom>({
@@ -10,11 +10,16 @@ const regusterFrom = reactive<regusterFrom>({
     phoneCode: ''
 })
 
-
 const loginFrom = reactive<logonFrom>({
     email: '',
     password:''
 })
+
+// 控制卡片
+const showLogin = ref<boolean>(true)
+
+//登录按钮
+const btnLoding = ref<boolean>(false)
 
 const regusterRules = {
     nickname: [
@@ -62,5 +67,8 @@ const regusterRules = {
 export {
     regusterRules,
     regusterFrom,
-    loginFrom
+    loginFrom,
+    showLogin,
+    btnLoding
+
 }

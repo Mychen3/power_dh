@@ -25,14 +25,14 @@ export default defineConfig({
         preprocessorOptions: {
             scss: {
                 additionalData: '@import "./src/styles/global.scss";'
-            }
+            },
         }
     },
     plugins: [vue(),
         ViteComponents({
             customComponentResolvers: [AntDesignVueResolver()],
             globalComponentsDeclaration: true,
-        })
+        }),
         // 按需加载样式
         // styleImport({
         //         libs: [{

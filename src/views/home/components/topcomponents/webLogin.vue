@@ -1,4 +1,5 @@
 <template>
+
   <div class="login-content">
     <div class="anmimate-box">
       <transition name="loginTransition">
@@ -13,7 +14,7 @@
                 <logInput v-model="loginFrom.password" type="password" placeholder="password" @focus="pwdFocusPanda" @blur="blurPanda"></logInput>
               </a-form-item>
               <a-form-item style="text-align: center">
-                <a-button @click="on_login" type="primary" style="width: 200px">GO</a-button>
+                <a-button @click="on_login" type="primary" :loading="btnLoding"  size="large" style="width: 200px">登录</a-button>
               </a-form-item>
               <a-form-item style="text-align: right">
                 <span>没有账号吗?</span><span class="go-register" @click="showLogin = false"> 前往注册</span>
@@ -62,17 +63,14 @@
 </template>
 
 <script setup lang="ts">
-// import {Space, Form, Input, Button} from 'ant-design-vue'
-import {regusterRules, regusterFrom, loginFrom} from '../../hooks/loginData'
+import {regusterRules, regusterFrom, loginFrom,showLogin,btnLoding} from '../../hooks/loginData'
 import {ref} from 'vue'
 import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
 import {on_login} from '../../hooks/useonLogin'
-const inputValue = ref<string>('')
-
-const showLogin = ref<boolean>(true)
 </script>
 
 <style scoped lang="scss">
+
 .login-content {
   @include boxsize;
   display: flex;
