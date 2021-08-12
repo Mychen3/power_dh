@@ -39,23 +39,22 @@
         </div>
       </a-popover>
     </div>
+
     <!--未登录状态-->
     <div v-if="login_once()">
-      <a-popover>
-        <template #content>
-          <div class="topright-login">
-            <div @click="onShowLogin">
-              <SmileOutlined/>
-              <span>登录账号</span>
-            </div>
-          </div>
+      <a-dropdown>
+        <UserOutlined style="font-size: 17px"/>
+        <template #overlay>
+          <a-menu style="width: 120px;text-align: center; top: 13px">
+            <a-menu-item>
+              <div @click="onShowLogin">
+                <SmileOutlined/>
+                <span style="margin-left: 10px">登录账号</span>
+              </div>
+            </a-menu-item>
+          </a-menu>
         </template>
-        <a-avatar size="small">
-          <template #icon>
-            <UserOutlined/>
-          </template>
-        </a-avatar>
-      </a-popover>
+      </a-dropdown>
     </div>
     <a-drawer
         :width="drawerWidth"
@@ -65,12 +64,32 @@
         v-model:visible="showDrawer">
       <Login @closeLogin="closeLogin"></Login>
     </a-drawer>
+    <!--登录状态-->
     <div v-if="!login_once()">
-        <Usetx></Usetx>
+      <Usetx></Usetx>
     </div>
-   <div v-if="!login_once()">
-     <span class="usename">{{ useName }}</span>
-   </div>
+    <div v-if="!login_once()" style="width: 80px">
+      <a-dropdown>
+        <span class="usename">{{ useName }}</span>
+        <template #overlay>
+          <a-menu style="width: 120px;text-align: center; top: 13px">
+            <a-menu-item>
+              <div>
+                <WindowsOutlined style="font-size: 16px;color: #0099ff" />
+                <span style="margin-left: 10px">工作主页</span>
+              </div>
+            </a-menu-item>
+            <a-menu-item>
+              <div @click="signOut">
+                <SendOutlined style="font-size: 16px;color: #0099ff" />
+                <span style="margin-left: 10px">退出用户</span>
+              </div>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
+
+    </div>
   </div>
 </template>
 
@@ -84,14 +103,19 @@ import {
   CoffeeOutlined,
   SmileOutlined,
   SkinOutlined,
+  WindowsOutlined,
+  SendOutlined,
+  ExclamationCircleOutlined
 } from "@ant-design/icons-vue";
 import {handleFullScreen, FullScreenImg,} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
 import Login from './webLogin.vue'
-import {watch, ref, reactive, onMounted} from "vue";
+import {watch, ref, reactive, onMounted,createVNode} from "vue";
 import type {drawerSty} from '../../hooks/login'
+import useSignout from '../../hooks/useSignout'
 import useStore from '@/store/index'
+import { Modal } from 'ant-design-vue';
 
 // pinia状态管理
 const Store = useStore()
@@ -101,7 +125,7 @@ const showDrawer = ref<boolean>(false)
 const drawerWidth = ref<number>(450)
 // 页面宽度
 const changewidth = ref<number>(0)
-
+// 用户名字
 const useName = ref<string>('')
 
 /*
@@ -126,6 +150,25 @@ const login_once = (): boolean => {
     return true
   }
 }
+/*
+* @name: 退出用户
+* @param:
+* @return: void
+* */
+const signOut =()=>{
+  Modal.confirm({
+    title: '你真的舍得离开我们吗?',
+    icon: createVNode(ExclamationCircleOutlined),
+    content: createVNode('div', { style: 'color:red;' }, 'Where there s a will,there s a way, kind of beautiful'),
+    onOk() {
+      useSignout()
+    },
+    onCancel() {
+    },
+  });
+}
+
+
 
 const drawer_sty = reactive({
   sty: {
@@ -147,6 +190,7 @@ const onresize_change = (): void => {
     showDrawer.value = false
   }
 }
+
 
 /*
 @name: 点击登录识别是是小屏登录还是大屏
@@ -189,7 +233,7 @@ onMounted(() => {
 
   & > div:hover {
     background-color: rgb(246, 246, 246);
-    transform: scale(1.2, 1.2);
+    transform: scale(1.1, 1.1);
   }
 }
 
@@ -270,12 +314,14 @@ onMounted(() => {
 @media screen and (max-width: 991.98px) {
 
 }
-.usename{
+
+.usename {
   font-size: 16px;
-  color: rgba(0,0,0,.85);
+  color: rgba(0, 0, 0, .85);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
 }
 
 

@@ -1,13 +1,16 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import baseURL from "@/http/baseURL";
+import useStore from '@/store/index'
 
+ const store =useStore()
 const serve = axios.create({});
 serve.defaults.timeout = 10000;
 serve.defaults.baseURL = baseURL
-
 serve.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 serve.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
+    config.headers['Authorization'] = 'Bearer ' + store.token // 让每个请求携带自定义token
+
       console.log(config)
     return config
 })
