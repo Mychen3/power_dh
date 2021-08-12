@@ -39,17 +39,14 @@
         </div>
       </a-popover>
     </div>
-    <div>
+    <!--未登录状态-->
+    <div v-if="login_once()">
       <a-popover>
         <template #content>
           <div class="topright-login">
             <div @click="onShowLogin">
               <SmileOutlined/>
               <span>登录账号</span>
-            </div>
-            <div>
-              <SkinOutlined/>
-              <span>注册账号</span>
             </div>
           </div>
         </template>
@@ -66,9 +63,14 @@
         :closable="false"
         :bodyStyle="drawer_sty.sty"
         v-model:visible="showDrawer">
-      <Login></Login>
+      <Login @closeLogin="closeLogin"></Login>
     </a-drawer>
-
+    <div v-if="!login_once()">
+        <Usetx></Usetx>
+    </div>
+   <div v-if="!login_once()">
+     <span class="usename">{{ useName }}</span>
+   </div>
   </div>
 </template>
 
@@ -83,13 +85,16 @@ import {
   SmileOutlined,
   SkinOutlined,
 } from "@ant-design/icons-vue";
-import {handleFullScreen, FullScreenImg} from "../../hooks/useFullScreen";
+import {handleFullScreen, FullScreenImg,} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
 import Login from './webLogin.vue'
 import {watch, ref, reactive, onMounted} from "vue";
 import type {drawerSty} from '../../hooks/login'
+import useStore from '@/store/index'
 
+// pinia状态管理
+const Store = useStore()
 // 控制抽屉显示隐藏
 const showDrawer = ref<boolean>(false)
 // 抽屉宽度
@@ -97,6 +102,30 @@ const drawerWidth = ref<number>(450)
 // 页面宽度
 const changewidth = ref<number>(0)
 
+const useName = ref<string>('')
+
+/*
+* @name: 登录完关闭抽屉
+* @param:
+* @return:void
+* */
+const closeLogin = (): void => {
+  showDrawer.value = false
+}
+
+/*
+* @name: 控制登录以后头像和用户信息
+* @param:
+* @return: boolean
+* */
+const login_once = (): boolean => {
+  if (Store.token != '' && Store.user != {}) {
+    useName.value = Store.user.nickname
+    return false
+  } else {
+    return true
+  }
+}
 
 const drawer_sty = reactive({
   sty: {
@@ -240,6 +269,13 @@ onMounted(() => {
 
 @media screen and (max-width: 991.98px) {
 
+}
+.usename{
+  font-size: 16px;
+  color: rgba(0,0,0,.85);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 

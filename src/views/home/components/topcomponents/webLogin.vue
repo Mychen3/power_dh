@@ -1,5 +1,4 @@
 <template>
-
   <div class="login-content">
     <div class="anmimate-box">
       <transition name="loginTransition">
@@ -14,7 +13,7 @@
                 <logInput v-model="loginFrom.password" type="password" placeholder="password" @focus="pwdFocusPanda" @blur="blurPanda"></logInput>
               </a-form-item>
               <a-form-item style="text-align: center">
-                <a-button @click="on_login" type="primary" :loading="btnLoding"  size="large" style="width: 200px">登录</a-button>
+                <a-button @click="on_login(emit)" type="primary" :loading="btnLoding"  size="large" style="width: 200px">登录</a-button>
               </a-form-item>
               <a-form-item style="text-align: right">
                 <span>没有账号吗?</span><span class="go-register" @click="showLogin = false"> 前往注册</span>
@@ -66,7 +65,10 @@
 import {regusterRules, regusterFrom, loginFrom,showLogin,btnLoding} from '../../hooks/loginData'
 import {ref} from 'vue'
 import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
-import {on_login} from '../../hooks/useonLogin'
+import on_login from '../../hooks/useonLogin'
+import {defineEmits} from 'vue'
+const emit = defineEmits(['closeLogin'])
+
 </script>
 
 <style scoped lang="scss">

@@ -23,8 +23,8 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     APopover: typeof import('ant-design-vue/es')['Popover']
     ASpace: typeof import('ant-design-vue/es')['Space']
-    ASpin: typeof import('ant-design-vue/es')['Spin']
     LogInput: typeof import('./src/components/logInput.vue')['default']
+    Usetx: typeof import('./src/components/usetx.vue')['default']
   }
 }
 
