@@ -1,23 +1,21 @@
 import routes from "@/router/router";
 
-const setRouter = () => {
-    for (let item of routes) {
-        // 先判断是不是要渲染给侧边栏的
-        if (item?.meta?.title) {
-            // 在判断需要登录
-             if (item.security){
-              // 判断有没有登陆
+let showone_level=[];
 
-
-             }else {
-
-             }
+(function (){
+    let showTitleArr = routes.filter(item=>{
+        return item.meta?.title
+    })
+    for (const item of showTitleArr){
+        if (item.one_level){
+            // @ts-ignore
+            for(const keyChildren of item.children){
+                showone_level.push(keyChildren)
+            }
+        }else {
+            showone_level.push(item)
         }
-
     }
-}
+})()
 
-
-export {
-
-}
+export default showone_level

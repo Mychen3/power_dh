@@ -3,7 +3,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AAvatar: typeof import('ant-design-vue/es')['Avatar']
+    AAlert: typeof import('ant-design-vue/es')['Alert']
     ABadge: typeof import('ant-design-vue/es')['Badge']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
     ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
@@ -24,6 +24,7 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     APopover: typeof import('ant-design-vue/es')['Popover']
     ASpace: typeof import('ant-design-vue/es')['Space']
+    ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     LogInput: typeof import('./src/components/logInput.vue')['default']
     Usetx: typeof import('./src/components/usetx.vue')['default']
   }

@@ -88,9 +88,17 @@
           </a-menu>
         </template>
       </a-dropdown>
-
     </div>
   </div>
+  <a-alert
+      v-if="!login_once()"
+      style="position: fixed;right: 0;top: 50px"
+      message="喝杯咖啡，静下心来工作吧！"
+      description="Where there's a will, ·there's a way, kind of beautiful"
+      type="success"
+      :closable="true"
+      show-icon
+  />
 </template>
 
 <script setup lang="ts">
@@ -167,8 +175,6 @@ const signOut =()=>{
     },
   });
 }
-
-
 
 const drawer_sty = reactive({
   sty: {

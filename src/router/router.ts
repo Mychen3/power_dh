@@ -32,11 +32,15 @@ const routes: router[] = [
         name: 'homepage',
         component: home,
         redirect: 'homemenu',
+        one_level: true,
         meta: {
             title: '首页'
         },
         children: [
             {
+                meta: {
+                    title: '首页'
+                },
                 path: '/homeMenu',
                 name: 'homeMenu',
                 component: () => import ("view/homeMenu/homeMenu.vue")
@@ -47,16 +51,53 @@ const routes: router[] = [
         path: '/work',
         name: 'work',
         component: home,
-        security: true,
         one_level: true,
         meta: {
             title: '工作台'
         },
         children: [
             {
-                path: 'workbench',
+                meta: {
+                    title: '工作台'
+                },
+                security: true,
+                path: '/workbench',
                 name: 'workbench',
                 component: () => import ("view/workbench/workbench.vue")
+            }
+        ]
+    },
+    {
+        path: '/webdevelop',
+        name: 'webdevelop',
+        component: home,
+        meta: {
+            title: '前端'
+        },
+        children: [
+            {
+                path: '/documentStudy',
+                name: 'documentStudy',
+                meta:{
+                    title:'文档学习'
+                },
+                component: () => import ("view/webdevelop/documentStudy/documentStudy.vue")
+            },
+            {
+                path: '/jsframe',
+                name: 'jsframe',
+                meta:{
+                    title:'js框架'
+                },
+                component: () => import ("view/webdevelop/jsframe/jsframe.vue")
+            },
+            {
+                path: '/jsplugin',
+                name: 'jsplugin',
+                meta:{
+                    title:'js框架'
+                },
+                component: () => import ("view/webdevelop/jsplugin/jsplugin.vue")
             }
         ]
     }
