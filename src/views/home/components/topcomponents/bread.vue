@@ -1,45 +1,56 @@
 <template>
   <div class="bread-content">
-      <a-breadcrumb>
-        <a-breadcrumb-item>首页</a-breadcrumb-item>
-        <a-breadcrumb-item>
-          <a href="">General</a>
-          <template #overlay>
-            <a-menu>
-              <a-menu-item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">General</a>
-              </a-menu-item>
-              <a-menu-item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">Layout</a>
-              </a-menu-item>
-              <a-menu-item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">Navigation</a>
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-breadcrumb-item>
-        <a-breadcrumb-item><span style="color: #999999;font-weight: normal">详情页</span></a-breadcrumb-item>
-      </a-breadcrumb>
+    <a-breadcrumb>
+      <a-breadcrumb-item>首页</a-breadcrumb-item>
+      <a-breadcrumb-item><span>{{ routertitle }}</span></a-breadcrumb-item>
+      <a-breadcrumb-item><span style="color: #999999;font-weight: normal">{{ router.meta.title }}</span>
+      </a-breadcrumb-item>
+    </a-breadcrumb>
   </div>
 </template>
 <script setup lang="ts">
-// import {Breadcrumb} from 'ant-design-vue'
+import {ref, watch, reactive} from 'vue'
+import {useRoute} from 'vue-router'
+import showone_level from '@/router/hooks/useRouter'
+
+const router = useRoute()
+const routerName = ref('')
+const routertitle = ref<string>('')
 
 
+watch(router, (newV: object, oidV: object) => {
+  routerName.value = newV.name
+  setBreadcrumb()
+})
+
+
+const setBreadcrumb = () => {
+  showone_level.forEach(item => {
+    if (item.children) {
+      item.children.forEach(items => {
+        if (items.name == routerName.value) {
+          routertitle.value = item.meta.title
+        }
+      })
+    } else {
+      routertitle.value = router.meta.title
+    }
+  })
+}
+
+setBreadcrumb()
 
 </script>
 <style scoped lang="scss">
 .bread-content {
- margin-left: 10px;
+  margin-left: 10px;
   font-weight: 600;
 }
 
 @media screen and (max-width: 991.98px) {
   .bread-content {
-     display: none;
+    display: none;
   }
-
 }
-
 
 </style>

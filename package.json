@@ -6,8 +6,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "ant-design-vue": "^2.2.3",
+    "ant-design-vue": "^2.2.6",
     "axios": "^0.21.1",
+    "npm": "7.20.6",
     "pinia": "^2.0.0-rc.4",
     "screenfull": "^5.1.0",
     "vue": "^3.2.1",

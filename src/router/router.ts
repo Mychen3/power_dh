@@ -14,6 +14,7 @@ interface router extends metaType {
     children?: object[]
     security?: boolean,
     one_level?: boolean,
+    icon?:string
 }
 
 
@@ -43,6 +44,7 @@ const routes: router[] = [
                 },
                 path: '/homeMenu',
                 name: 'homeMenu',
+                icon:'icon-zhuye1',
                 component: () => import ("view/homeMenu/homeMenu.vue")
             }
         ]
@@ -61,8 +63,9 @@ const routes: router[] = [
                     title: '工作台'
                 },
                 security: true,
-                path: '/workbench',
+                path: 'workbench',
                 name: 'workbench',
+                icon:'icon-gongzuotai',
                 component: () => import ("view/workbench/workbench.vue")
             }
         ]
@@ -74,9 +77,10 @@ const routes: router[] = [
         meta: {
             title: '前端'
         },
+        icon:'icon-qianduan',
         children: [
             {
-                path: '/documentStudy',
+                path: 'documentStudy',
                 name: 'documentStudy',
                 meta:{
                     title:'文档学习'
@@ -84,7 +88,7 @@ const routes: router[] = [
                 component: () => import ("view/webdevelop/documentStudy/documentStudy.vue")
             },
             {
-                path: '/jsframe',
+                path: 'jsframe',
                 name: 'jsframe',
                 meta:{
                     title:'js框架'
@@ -92,10 +96,10 @@ const routes: router[] = [
                 component: () => import ("view/webdevelop/jsframe/jsframe.vue")
             },
             {
-                path: '/jsplugin',
+                path: 'jsplugin',
                 name: 'jsplugin',
                 meta:{
-                    title:'js框架'
+                    title:'js插件'
                 },
                 component: () => import ("view/webdevelop/jsplugin/jsplugin.vue")
             }

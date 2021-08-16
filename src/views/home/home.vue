@@ -10,30 +10,27 @@
           @breakpoint="onBreakpoint">
         <div class="logo">
           <img :src="login" alt="logo">
-          <span v-show="!collapsed">{{MENU_NAME}}</span>
+          <span v-show="!collapsed">{{ MENU_NAME }}</span>
         </div>
-
-        <a-menu @click="funs"  theme="dark" mode="inline" >
+        <a-menu @click="goRouter" theme="dark" mode="inline">
           <template v-for="(item,index) in showone_level" :key="item.name">
-            <template  v-if="!item.children">
-          <a-menu-item :key="item.name" >
-            <template #icon>
-              <PieChartOutlined />
+            <template v-if="!item.children">
+              <a-menu-item :key="item.name">
+                <template #icon>
+                  <icon-font :style="{ fontSize: '18px' }" :type="item.icon"/>
+                </template>
+                <span>{{ item.meta.title }}</span>
+              </a-menu-item>
             </template>
-            <span>{{item.meta.title}}</span>
-          </a-menu-item>
-            </template>
-          <a-sub-menu :key="item.name" v-if="item.children" >
-            <template #icon>
-              <PieChartOutlined />
-            </template>
-            <template #title >{{item.meta.title}}</template>
-            <a-menu-item :key="items.name"  v-for="(items,index) in item.children">{{items.meta.title}}</a-menu-item>
-          </a-sub-menu>
-
+            <a-sub-menu :key="item.name" v-if="item.children">
+              <template #icon>
+                <icon-font :style="{ fontSize: '18px' }" :type="item.icon"/>
+              </template>
+              <template #title>{{ item.meta.title }}</template>
+              <a-menu-item :key="items.name" v-for="(items,index) in item.children">{{ items.meta.title }}</a-menu-item>
+            </a-sub-menu>
           </template>
         </a-menu>
-
       </a-layout-sider>
       <a-layout>
         <div>
@@ -45,15 +42,13 @@
                 <Bread></Bread>
               </div>
               <div class="top-right">
-              <Topright></Topright>
+                <Topright></Topright>
               </div>
             </div>
           </a-layout-header>
           <a-layout-content>
             <div @click="maskClose" :class="{'content-mask':showMask}"></div>
-            <div>
-              123
-            </div>
+            <router-view></router-view>
           </a-layout-content>
         </div>
       </a-layout>
@@ -62,7 +57,7 @@
 </template>
 <script setup lang="ts">
 // import {Layout, Menu} from "ant-design-vue";
-import {UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined,PieChartOutlined,} from '@ant-design/icons-vue';
+import {UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined, PieChartOutlined,} from '@ant-design/icons-vue';
 import {collapsed, brokenData, shrinkWidth, siderPosition, showMask} from './hooks/headerData'
 import {collapsedOpen, collapsedClose, maskClose} from './hooks/useMenuMethods'
 import Bread from './components/topcomponents/bread.vue'
@@ -70,15 +65,19 @@ import Topright from './components/topcomponents/topright.vue'
 import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import showone_level from '@/router/hooks/useRouter'
+import IconFont from './hooks/usemenuicon'
 import {watch} from 'vue'
+import {useRouter} from 'vue-router'
 
+// 自定义图标
+const icon = IconFont
 
-
-
-const funs=(item:string,key:any,keyPath:string)=>{
-  console.log(key)
-  console.log(item)
-
+const router = useRouter()
+// 路由跳转
+const goRouter = (item: string, key: any, keyPath: string) => {
+    router.push({
+      name:item.key
+    })
 }
 
 // 触发响应式布局断点时的回调
@@ -108,7 +107,6 @@ watch(brokenData, (newV: boolean): void => {
   position: v-bind(siderPosition);
   z-index: 2;
 }
-
 
 
 </style>
