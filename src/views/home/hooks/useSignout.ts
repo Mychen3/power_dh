@@ -11,7 +11,13 @@ const signOut=async ():Promise<void>=>{
    const dataReq = await signout_req()
      if (dataReq.data.statusCode == 200){
          store.token=''
-         store.user = {}
+         store.user = {
+             email: '',
+             level: '',
+             nickname: '',
+             phone: '',
+             token: '',
+         }
          window.sessionStorage.clear()
          location.reload()
          message.success('退出成功')

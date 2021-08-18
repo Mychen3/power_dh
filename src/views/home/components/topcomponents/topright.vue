@@ -66,7 +66,7 @@
     </a-drawer>
     <!--登录状态-->
     <div v-if="!login_once()">
-      <Usetx></Usetx>
+      <Usetx Size="20px"></Usetx>
     </div>
     <div v-if="!login_once()" style="width: 80px">
       <a-dropdown>
@@ -119,7 +119,7 @@ import {handleFullScreen, FullScreenImg,} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
 import Login from './webLogin.vue'
-import {watch, ref, reactive, onMounted,createVNode} from "vue";
+import {watch, ref, reactive, onMounted,createVNode,nextTick} from "vue";
 import type {drawerSty} from '../../hooks/login'
 import useSignout from '../../hooks/useSignout'
 import useStore from '@/store/index'
@@ -209,7 +209,9 @@ const onShowLogin = (): void => {
 }
 
 // 节流回调函数监听页面大小
-window.onresize = throttle(onresize_change, 1000)
+nextTick(()=>{
+  window.onresize = throttle(onresize_change, 1000)
+})
 
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
 watch(
@@ -265,14 +267,14 @@ onMounted(() => {
 
 .popover-content::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+  width: 6px; /*高宽分别对应横竖滚动条的尺寸*/
   height: 1px;
 }
 
 .popover-content::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 10px;
-  background-color: skyblue;
+  background-color: rgb(191,191,191);
   background-image: -webkit-linear-gradient(
           45deg,
           rgba(255, 255, 255, 0.2) 25%,

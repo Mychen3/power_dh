@@ -1,0 +1,48 @@
+.workbench-box {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.work-content {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  @include contentPadding;
+}
+
+
+.work-right {
+  width: 70%;
+}
+
+.work-left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.work-love-box {
+  background-color: #ffffff;
+  height: 500px;
+  border-radius: 3px;
+}
+.card-tool{
+  height: 120px;
+ display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+  font-size: 15px;
+  box-sizing: border-box;
+   &>div{
+      margin-top: 10px;
+   }
+}
+.work-img{
+  background-color: #ffffff;
+  width: 100%;
+  margin-top: 15px;
+}

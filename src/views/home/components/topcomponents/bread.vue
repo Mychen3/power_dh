@@ -15,17 +15,17 @@ import showone_level from '@/router/hooks/useRouter'
 
 const router = useRoute()
 const routerName = ref('')
-const routertitle = ref<string>('')
+const routertitle = ref<string | unknown>('')
 
 
-watch(router, (newV: object, oidV: object) => {
+watch(router, (newV: any, oidV: object): void => {
   routerName.value = newV.name
   setBreadcrumb()
 })
 
 
 const setBreadcrumb = () => {
-  showone_level.forEach(item => {
+  showone_level.forEach((item: { children: any[]; meta: { title: string } }) => {
     if (item.children) {
       item.children.forEach(items => {
         if (items.name == routerName.value) {

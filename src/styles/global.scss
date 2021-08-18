@@ -8,3 +8,9 @@
    align-items: center;
   box-sizing: border-box;
 }
+
+@mixin contentPadding{
+      padding: 15px;
+}
+
+

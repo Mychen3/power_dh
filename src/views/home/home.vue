@@ -48,7 +48,9 @@
           </a-layout-header>
           <a-layout-content>
             <div @click="maskClose" :class="{'content-mask':showMask}"></div>
-            <router-view></router-view>
+            <transition name="leftgo">
+              <router-view></router-view>
+            </transition>
           </a-layout-content>
         </div>
       </a-layout>
@@ -65,19 +67,17 @@ import Topright from './components/topcomponents/topright.vue'
 import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import showone_level from '@/router/hooks/useRouter'
-import IconFont from './hooks/usemenuicon'
+import IconFont from '@/hooks/usemenuicon'
 import {watch} from 'vue'
 import {useRouter} from 'vue-router'
 
-// 自定义图标
-const icon = IconFont
 
 const router = useRouter()
 // 路由跳转
-const goRouter = (item: string, key: any, keyPath: string) => {
-    router.push({
-      name:item.key
-    })
+const goRouter = (item: { key: string }, key: any, keyPath: string) => {
+  router.push({
+    name: item.key
+  })
 }
 
 // 触发响应式布局断点时的回调
@@ -101,6 +101,23 @@ watch(brokenData, (newV: boolean): void => {
 
 <style scoped lang="scss">
 @import "style/home";
+
+.leftgo-enter-from,
+.leftgo-enter-active{
+  animation: leftgo 1s ease 0s 1 normal forwards;
+}
+
+@keyframes leftgo {
+  0% {
+    opacity: 0;
+    transform: translateX(-70px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 .ant-layout-sider {
   height: 100%;

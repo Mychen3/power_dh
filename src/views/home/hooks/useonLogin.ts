@@ -10,22 +10,28 @@ import {message} from 'ant-design-vue'
 * */
 
 const on_login = async (emit:Function): Promise<void> => {
-    if (loginFrom.password != '' && loginFrom.email != '') {
-        btnLoding.value = true
-        const store = useStore()
-        const dataReq = await login_req(loginFrom)
-        if (dataReq.data.statusCode == 200) {
-            btnLoding.value = false
-            store.token = dataReq.data.data.token
-            store.user = dataReq.data.data
-            window.sessionStorage.setItem('user',JSON.stringify(dataReq.data.data))
-            window.sessionStorage.setItem('token',dataReq.data.data.token)
-            emit('closeLogin')
-            message.success("登录成功")
-        }
-    }else {
-        message.warning('请您输入邮箱和密码登录！');
-    }
+  try {
+      if (loginFrom.password != '' && loginFrom.email != '') {
+          btnLoding.value = true
+          const store = useStore()
+          const dataReq = await login_req(loginFrom)
+          if (dataReq.data.statusCode == 200) {
+              btnLoding.value = false
+              store.token = dataReq.data.data.token
+              store.user = dataReq.data.data
+              window.sessionStorage.setItem('user',JSON.stringify(dataReq.data.data))
+              window.sessionStorage.setItem('token',dataReq.data.data.token)
+              emit('closeLogin')
+              message.success("登录成功")
+          }
+      }else {
+          message.warning('请您输入邮箱和密码登录！');
+      }
+  }catch (e) {
+      btnLoding.value = false
+      message.warning('请稍后尝试，服务器出现了一点点问题');
+  }
+
 }
 export default on_login
 

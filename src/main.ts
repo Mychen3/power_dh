@@ -1,14 +1,14 @@
-import { createApp } from 'vue'
+import { createApp} from 'vue'
 import App from './App.vue'
 import Antd from 'ant-design-vue';
 import '@/styles/global.css'
-
 import 'ant-design-vue/es/message/style/css'
 import 'ant-design-vue/es/Modal/style/css'
-
 // @ts-ignore
 import router from "@/router/index.ts"
 import {createPinia} from "pinia";
+
+
 
 
 createApp(App)
@@ -16,6 +16,7 @@ createApp(App)
     .use(router)
     .use(createPinia())
     .mount('#app')
+
 
 
 // app.use(router)

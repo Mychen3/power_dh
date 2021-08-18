@@ -1,6 +1,6 @@
 import routes from "@/router/router";
 
-let showone_level=[];
+let showone_level:any=[];
 
 (function (){
     let showTitleArr = routes.filter(item=>{

@@ -7,7 +7,7 @@ import {
 } from "vue-router";
 import routers from './router'
 import useStore from "@/store";
-
+import {nextTick} from 'vue'
 
 const router = createRouter(<RouterOptions>{
     history: createWebHashHistory(),
@@ -17,17 +17,19 @@ const router = createRouter(<RouterOptions>{
 
 // 路由前面置守卫
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-
     const store = useStore()
-    const user = JSON.parse(<string>window.sessionStorage.getItem('user'))
-    const token = window.sessionStorage.getItem('token')
-
-    if (user && token) {
-        store.token = token
-        store.user = user
-    }
-    next()
-
+    nextTick(():void=>{
+        const user = JSON.parse(<string>window.sessionStorage.getItem('user'))
+        const token = window.sessionStorage.getItem('token')
+        if (user && token) {
+            store.token = token
+            store.user = user
+        }
+    }).then(res=>{
+        next()
+    }).catch(err=>{
+        console.log(err)
+    })
 })
 
 
