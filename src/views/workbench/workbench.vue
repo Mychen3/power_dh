@@ -38,37 +38,8 @@ const store = useStore()
 
 .workbench-content {
   @include boxsize;
-  overflow-y: auto;
 }
 
-.workbench-content::-webkit-scrollbar {
-  /*滚动条整体样式*/
-  width: 6px; /*高宽分别对应横竖滚动条的尺寸*/
-  height: 1px;
-}
-
-.workbench-content::-webkit-scrollbar-thumb {
-  /*滚动条里面小方块*/
-  border-radius: 10px;
-  background-color: rgb(191,191,191);
-  background-image: -webkit-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.2) 25%,
-          transparent 25%,
-          transparent 50%,
-          rgba(255, 255, 255, 0.2) 50%,
-          rgba(255, 255, 255, 0.2) 75%,
-          transparent 75%,
-          transparent
-  );
-}
-
-.workbench-content::-webkit-scrollbar-track {
-  /*滚动条里面轨道*/
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: #ededed;
-  border-radius: 10px;
-}
 
 .workbench-top {
   height: 110px;

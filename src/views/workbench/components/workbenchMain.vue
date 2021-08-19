@@ -40,6 +40,15 @@
        <div class="work-img">
          <a-image  :preview="false" class="work-imgs" :src="dataImg"/>
        </div>
+      <div>
+        <a-card title="任务完成潜力" style="width: 100%">
+          <work-echarts></work-echarts>
+        </a-card>
+
+      </div>
+      <div>
+
+      </div>
     </div>
   </div>
 </template>
@@ -47,6 +56,7 @@
 <script setup lang="ts">
 import IconFont from 'hk/usemenuicon'
 import WorkbenchList from './workbenchList.vue'
+import  WorkEcharts from '../components/workEcharts.vue'
 import {dataImg} from 'ass/pictureData'
 const icon = IconFont
 

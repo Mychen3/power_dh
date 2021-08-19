@@ -23,8 +23,6 @@ interface logonFrom{
     password:string,
 }
 
-
-
 export {
     drawerSty,
     regusterFrom,

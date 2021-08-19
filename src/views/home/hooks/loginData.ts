@@ -21,6 +21,9 @@ const showLogin = ref<boolean>(true)
 //登录按钮
 const btnLoding = ref<boolean>(false)
 
+
+
+
 const regusterRules = {
     nickname: [
         {
@@ -69,6 +72,6 @@ export {
     regusterFrom,
     loginFrom,
     showLogin,
-    btnLoding
+    btnLoding,
 
 }

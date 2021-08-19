@@ -21,10 +21,15 @@ const on_login = async (emit:Function): Promise<void> => {
               store.user = dataReq.data.data
               window.sessionStorage.setItem('user',JSON.stringify(dataReq.data.data))
               window.sessionStorage.setItem('token',dataReq.data.data.token)
+              // 登录第一次提示后面刷新不提示
+              window.sessionStorage.setItem('loginTip','0')
               emit('closeLogin')
               message.success("登录成功")
+          }else {
+              btnLoding.value = false
           }
       }else {
+
           message.warning('请您输入邮箱和密码登录！');
       }
   }catch (e) {

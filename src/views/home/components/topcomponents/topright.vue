@@ -75,13 +75,13 @@
           <a-menu style="width: 120px;text-align: center; top: 13px">
             <a-menu-item>
               <div>
-                <WindowsOutlined style="font-size: 16px;color: #0099ff" />
+                <WindowsOutlined style="font-size: 16px;color: #0099ff"/>
                 <span style="margin-left: 10px">工作主页</span>
               </div>
             </a-menu-item>
             <a-menu-item>
               <div @click="signOut">
-                <SendOutlined style="font-size: 16px;color: #0099ff" />
+                <SendOutlined style="font-size: 16px;color: #0099ff"/>
                 <span style="margin-left: 10px">退出用户</span>
               </div>
             </a-menu-item>
@@ -91,14 +91,13 @@
     </div>
   </div>
   <a-alert
-      v-if="!login_once()"
+      v-if="showTip()"
       style="position: fixed;right: 0;top: 50px"
       message="喝杯咖啡，静下心来工作吧！"
       description="Where there's a will, ·there's a way, kind of beautiful"
       type="success"
       :closable="true"
-      show-icon
-  />
+      show-icon/>
 </template>
 
 <script setup lang="ts">
@@ -119,11 +118,12 @@ import {handleFullScreen, FullScreenImg,} from "../../hooks/useFullScreen";
 import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
 import Login from './webLogin.vue'
-import {watch, ref, reactive, onMounted,createVNode,nextTick} from "vue";
+import {watch, ref, reactive, onMounted, createVNode, nextTick} from "vue";
 import type {drawerSty} from '../../hooks/login'
 import useSignout from '../../hooks/useSignout'
 import useStore from '@/store/index'
-import { Modal } from 'ant-design-vue';
+import {Modal} from 'ant-design-vue';
+
 
 // pinia状态管理
 const Store = useStore()
@@ -135,6 +135,24 @@ const drawerWidth = ref<number>(450)
 const changewidth = ref<number>(0)
 // 用户名字
 const useName = ref<string>('')
+
+
+
+/*
+* @name: 控制提示款是否是第一次显示
+* @param:
+* @return:boolean
+* */
+const showTip = (): boolean => {
+  if (window.sessionStorage.getItem('loginTip') == '0') {
+    window.sessionStorage.setItem('loginTip', '1')
+    return true
+  } else {
+    return false
+  }
+}
+
+
 
 /*
 * @name: 登录完关闭抽屉
@@ -158,16 +176,17 @@ const login_once = (): boolean => {
     return true
   }
 }
+
 /*
 * @name: 退出用户
 * @param:
 * @return: void
 * */
-const signOut =()=>{
+const signOut = () => {
   Modal.confirm({
     title: '你真的舍得离开我们吗?',
     icon: createVNode(ExclamationCircleOutlined),
-    content: createVNode('div', { style: 'color:red;' }, 'Where there s a will,there s a way, kind of beautiful'),
+    content: createVNode('div', {style: 'color:red;'}, 'Where there s a will,there s a way, kind of beautiful'),
     onOk() {
       useSignout()
     },
@@ -185,13 +204,13 @@ const drawer_sty = reactive({
   } as drawerSty
 })
 
+
 /*
 @name: 监听页面大小回调函数
 @return: void
 */
 const onresize_change = (): void => {
   changewidth.value = document.documentElement.clientWidth
-
   if (changewidth.value < 992) {
     showDrawer.value = false
   }
@@ -209,7 +228,7 @@ const onShowLogin = (): void => {
 }
 
 // 节流回调函数监听页面大小
-nextTick(()=>{
+nextTick(() => {
   window.onresize = throttle(onresize_change, 1000)
 })
 
@@ -224,6 +243,8 @@ watch(
 
 onMounted(() => {
   changewidth.value = document.documentElement.clientWidth
+
+
 })
 
 </script>
@@ -274,7 +295,7 @@ onMounted(() => {
 .popover-content::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 10px;
-  background-color: rgb(191,191,191);
+  background-color: rgb(191, 191, 191);
   background-image: -webkit-linear-gradient(
           45deg,
           rgba(255, 255, 255, 0.2) 25%,

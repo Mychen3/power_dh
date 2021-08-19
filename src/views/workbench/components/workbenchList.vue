@@ -6,6 +6,10 @@
     </template>
     <template #renderItem="{ item }">
       <a-list-item>
+        <template #actions>
+          <a>edit</a>
+          <a>more</a>
+        </template>
         <a-list-item-meta
             description="Ant Design, a design language for background applications, is refined by Ant UED Team">
           <template #title>
