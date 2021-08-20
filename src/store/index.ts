@@ -1,15 +1,6 @@
 import {defineStore} from 'pinia'
+import user from './store'
 
-interface user {
-    token: string,
-    user: {
-        email: string,
-        level?: string,
-        nickname: string,
-        phone: string,
-        token: string,
-    }
-}
 export default defineStore({
     id: 'user',
     state():user {
@@ -22,6 +13,7 @@ export default defineStore({
                 token: '',
             },
             token: '',
+            clientWidth:document.documentElement.clientWidth
         }
     }
 })

@@ -211,6 +211,7 @@ const drawer_sty = reactive({
 */
 const onresize_change = (): void => {
   changewidth.value = document.documentElement.clientWidth
+  Store.clientWidth =changewidth.value;
   if (changewidth.value < 992) {
     showDrawer.value = false
   }
