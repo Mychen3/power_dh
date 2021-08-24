@@ -1,6 +1,6 @@
 <template>
   <div class="input-content">
-    <input @focus="handleinputFocus" @blur="handleinputBlur" :type="props.type" v-model="inputValue" required>
+    <input autocomplete="on" @focus="handleinputFocus" @blur="handleinputBlur" :type="props.type" v-model="inputValue" required>
     <span class="highlight"></span>
     <span class="bar"></span>
     <label>{{ props.placeholder }}</label>

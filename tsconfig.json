@@ -32,6 +32,9 @@
       ],
       "view/*": [
         "src/views/*"
+      ],
+      "api/*": [
+        "src/api/*"
       ]
     }
   },

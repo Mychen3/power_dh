@@ -7,6 +7,7 @@ import 'ant-design-vue/es/Modal/style/css'
 // @ts-ignore
 import router from "@/router/index.ts"
 import {createPinia} from "pinia";
+import 'default-passive-events'
 
 
 

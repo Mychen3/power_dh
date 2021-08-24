@@ -18,7 +18,8 @@ export default defineConfig({
             'hk': resolve(__dirname, 'src/hooks'),
             'ut': resolve(__dirname, 'src/utils'),
             'ass': resolve(__dirname, 'src/assets'),
-            'comp': resolve(__dirname, 'src/components')
+            'comp': resolve(__dirname, 'src/components'),
+            'api': resolve(__dirname, 'src/api')
         }
     },
     css: {

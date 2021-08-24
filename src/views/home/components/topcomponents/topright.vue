@@ -59,7 +59,7 @@
     <a-drawer
         :width="drawerWidth"
         placement="right"
-        :closable="false"
+        :destroyOnClose="true"
         :bodyStyle="drawer_sty.sty"
         v-model:visible="showDrawer">
       <Login @closeLogin="closeLogin"></Login>
@@ -237,7 +237,7 @@ nextTick(() => {
 watch(
     () => scrollRef,
     (newV: HTMLElement | object): void => {
-      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000));
+      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000),{passive:true});
     },
     {deep: true}
 );

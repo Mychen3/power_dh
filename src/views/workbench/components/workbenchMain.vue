@@ -44,23 +44,13 @@
         <a-card title="任务完成潜力" style="width: 100%">
           <work-echarts></work-echarts>
         </a-card>
-
       </div>
       <div>
-
       </div>
     </div>
   </div>
-  <a-drawer
-      title="添加导航"
-      placement="right"
-      width="500"
-      :closable="false"
-      v-model:visible="addShowNav"
-  >
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
+  <a-drawer :destroyOnClose="true" closable title="添加导航" placement="right" width="650" :closable="false" v-model:visible="addShowNav">
+    <Work-DrawerForm></Work-DrawerForm>
   </a-drawer>
 </template>
 
@@ -68,10 +58,12 @@
 import {ref} from 'vue'
 import IconFont from 'hk/usemenuicon'
 import {message} from 'ant-design-vue'
+import WorkDrawerForm from './workDrawerForm.vue'
 import WorkbenchList from './workbenchList.vue'
 import WorkEcharts from '../components/workEcharts.vue'
 import {dataImg} from 'ass/pictureData'
 import useStore from '@/store/index'
+
 const icon = IconFont
 const store = useStore()
 
@@ -79,12 +71,11 @@ const store = useStore()
 const addShowNav = ref<boolean>(false)
 
 const onShowNav = (): void => {
-        if (store.clientWidth as number > 992){
-          addShowNav.value = true
-        }else {
-          message.warning('请在电脑上添加导航')
-        }
-
+  if (store.clientWidth as number > 992) {
+    addShowNav.value = true
+  } else {
+    message.warning('请在电脑上添加导航')
+  }
 }
 
 
