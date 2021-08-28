@@ -63,7 +63,6 @@
 
 <script setup lang="ts">
 import {regusterRules, regusterFrom, loginFrom,showLogin,btnLoding} from '../../hooks/loginData'
-import {ref} from 'vue'
 import {loginBgc, focusPanda, blurPanda, pwdFocusPanda} from '../../hooks/usePandaChange'
 import on_login from '../../hooks/useonLogin'
 const emit = defineEmits(['closeLogin'])

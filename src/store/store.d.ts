@@ -1,4 +1,6 @@
-export default interface user {
+
+
+export default interface user  {
     token: string | null,
     user: {
         email: string,
@@ -6,6 +8,6 @@ export default interface user {
         nickname: string,
         phone: string,
         token: string,
-    } | string,
+    },
     clientWidth: number | undefined;
 }

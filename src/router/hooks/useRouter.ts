@@ -1,18 +1,30 @@
 import routes from "@/router/router";
+import useStore from '@/store/index'
 
-let showone_level:any=[];
+const store = useStore()
 
-(function (){
-    let showTitleArr = routes.filter(item=>{
+let showone_level: any = [];
+
+(function () {
+    let showTitleArr = routes.filter(item => {
         return item.meta?.title
     })
-    for (const item of showTitleArr){
-        if (item.one_level){
-            // @ts-ignore
-            for(const keyChildren of item.children){
-                showone_level.push(keyChildren)
+    for (const item of showTitleArr) {
+        if (item.one_level) {
+            if ( store.user.level == '1') {
+                // @ts-ignore
+                for (const keyChildren of item.children) {
+                    showone_level.push(keyChildren)
+                }
+            } else {
+                  const securityArr = item.children?.filter((items:any)=>{
+                      return !items.security
+                  })
+                 securityArr?.forEach(keys=>{
+                     showone_level.push(keys)
+                 })
             }
-        }else {
+        } else {
             showone_level.push(item)
         }
     }

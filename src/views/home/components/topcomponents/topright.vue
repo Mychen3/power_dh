@@ -73,7 +73,7 @@
         <span class="usename">{{ useName }}</span>
         <template #overlay>
           <a-menu style="width: 120px;text-align: center; top: 13px">
-            <a-menu-item>
+            <a-menu-item v-if="Store.user.level == '1'">
               <div>
                 <WindowsOutlined style="font-size: 16px;color: #0099ff"/>
                 <span style="margin-left: 10px">工作主页</span>
@@ -109,7 +109,6 @@ import {
   UserOutlined,
   CoffeeOutlined,
   SmileOutlined,
-  SkinOutlined,
   WindowsOutlined,
   SendOutlined,
   ExclamationCircleOutlined
@@ -124,7 +123,6 @@ import useSignout from '../../hooks/useSignout'
 import useStore from '@/store/index'
 import {Modal} from 'ant-design-vue';
 
-
 // pinia状态管理
 const Store = useStore()
 // 控制抽屉显示隐藏
@@ -137,13 +135,13 @@ const changewidth = ref<number>(0)
 const useName = ref<string>('')
 
 
-
 /*
 * @name: 控制提示款是否是第一次显示
 * @param:
 * @return:boolean
 * */
 const showTip = (): boolean => {
+
   if (window.sessionStorage.getItem('loginTip') == '0') {
     window.sessionStorage.setItem('loginTip', '1')
     return true
@@ -151,8 +149,6 @@ const showTip = (): boolean => {
     return false
   }
 }
-
-
 
 /*
 * @name: 登录完关闭抽屉
@@ -169,7 +165,7 @@ const closeLogin = (): void => {
 * @return: boolean
 * */
 const login_once = (): boolean => {
-  if (Store.token != '' && Store.user != {}) {
+  if (Store.token != '' && ((Store.user as {})) != {}) {
     useName.value = Store.user.nickname
     return false
   } else {
@@ -211,7 +207,7 @@ const drawer_sty = reactive({
 */
 const onresize_change = (): void => {
   changewidth.value = document.documentElement.clientWidth
-  Store.clientWidth =changewidth.value;
+  Store.clientWidth = changewidth.value;
   if (changewidth.value < 992) {
     showDrawer.value = false
   }
@@ -236,16 +232,14 @@ nextTick(() => {
 // 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
 watch(
     () => scrollRef,
-    (newV: HTMLElement | object): void => {
-      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000),{passive:true});
+    (): void => {
+      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000), {passive: true});
     },
     {deep: true}
 );
 
 onMounted(() => {
   changewidth.value = document.documentElement.clientWidth
-
-
 })
 
 </script>

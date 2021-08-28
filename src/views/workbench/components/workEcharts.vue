@@ -1,33 +1,31 @@
 <template>
   <div class="echarts-box">
-  <div id="myEcharts" class="work-echarts-content">
-  </div>
+    <div id="myEcharts" class="work-echarts-content"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref,nextTick} from 'vue'
-import {option, echarts} from '../hooks/useworkEcharts'
+import {ref, nextTick } from 'vue'
+import { option, echarts } from '../hooks/useworkEcharts'
 
-const chartDom = ref<HTMLElement | null>()
+const chartDom = ref<HTMLElement | null | undefined>()
 
 
-nextTick(()=>{
+nextTick(() => {
   chartDom.value = document.getElementById('myEcharts')
-  const myChart = echarts.init(chartDom.value)
+  const myChart = echarts.init((chartDom.value as HTMLElement))
   option && myChart.setOption(option)
 })
 
 
 </script>
 <style scoped lang="scss">
-
 .work-echarts-content {
   background-color: #ffffff;
   width: 340px;
-  height:100%;
+  height: 100%;
 }
-.echarts-box{
+.echarts-box {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,11 +37,10 @@ nextTick(()=>{
   .work-echarts-content {
     background-color: #ffffff;
     width: 280px;
-    height:100%;
+    height: 100%;
   }
-  .echarts-box{
+  .echarts-box {
     height: 340px;
   }
-
 }
 </style>

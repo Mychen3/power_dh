@@ -1,13 +1,14 @@
 <template>
-  <a-card hoverable class="card-box">
-    <a-card-meta :title="props.title"
-                 :description="props.content">
+  <a-card hoverable class="card-box" :bodyStyle="{overflow: 'hidden','text-overflow':'ellipsis', height:'120px','font-size':'15px'}">
+    <a-card-meta  :title="props.title" :description="props.content">
       <template #avatar>
         <a-avatar :src="props.cardImg"/>
       </template>
     </a-card-meta>
     <template class="ant-card-actions" #actions>
-      <div class="love-icon"><LikeOutlined style="margin-right: 5px; font-size: 18px"/> <span style="  font-size: 16px">{{props.card_love}}</span> </div>
+      <div class="love-icon" @click="onGiveLike">
+        <LikeOutlined style="margin-right: 5px; font-size: 18px"/>
+        <span style="  font-size: 16px">{{ love_quantity }}</span></div>
       <GithubOutlined @click="()=>{win.open(props.card_github)}"/>
       <ReadOutlined @click="()=>{win.open(props.card_home)}"/>
     </template>
@@ -15,34 +16,51 @@
 </template>
 
 <script setup lang="ts">
-import {LikeOutlined  , GithubOutlined, ReadOutlined} from '@ant-design/icons-vue';
-import  throttle from 'hk/usethrottle'
-import {defineProps} from "vue";
-const win = window
+import {LikeOutlined, GithubOutlined, ReadOutlined} from '@ant-design/icons-vue';
+import {givelike_req} from 'api/card/cardAPi'
+import {ref} from "vue";
+
+let win = ref(window)
+
 
 const props = defineProps({
-  card_id:String,
+  card_id: [String,Number],
   title: String,
   content: String,
   cardImg: String,
-  card_github:String,
-  card_home:String,
-  card_type:String,
-  card_love:String,
+  card_github: String,
+  card_home: String,
+  card_type: String,
+  card_love: String,
 })
+
+const love_quantity = ref<number>(parseInt((props.card_love as string)))
+
+let timer:any = null
 
 /*
 * @throttle: 点赞函数
 * @param:
 * @param:
 * */
-const onGiveLike =():void=>{
+const onGiveLike = (): void => {
+  love_quantity.value += 1
+  const param = {
+    card_love: love_quantity.value,
+    card_id: props.card_id
+  }
+
+  // 防抖
+  if (timer) {
+    clearTimeout(timer)
+  }
+  timer = setTimeout(() => {
+    givelike_req(param)
+    timer=null
+  }, 1000)
 
 
 }
-
-
-
 
 
 </script>

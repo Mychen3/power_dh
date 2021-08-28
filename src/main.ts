@@ -8,7 +8,8 @@ import 'ant-design-vue/es/Modal/style/css'
 import router from "@/router/index.ts"
 import {createPinia} from "pinia";
 import 'default-passive-events'
-
+import moment from 'moment';
+import 'moment/dist/locale/zh-cn'
 
 
 

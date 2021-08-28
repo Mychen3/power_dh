@@ -9,19 +9,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import {ref, watch, reactive} from 'vue'
+import {ref, watch} from 'vue'
 import {useRoute} from 'vue-router'
 import showone_level from '@/router/hooks/useRouter'
-
 const router = useRoute()
 const routerName = ref('')
 const routertitle = ref<string | unknown>('')
-
-
-watch(router, (newV: any, oidV: object): void => {
-  routerName.value = newV.name
-  setBreadcrumb()
-})
 
 
 const setBreadcrumb = () => {
@@ -29,7 +22,7 @@ const setBreadcrumb = () => {
     if (item.children) {
       item.children.forEach(items => {
         if (items.name == routerName.value) {
-          routertitle.value = item.meta.title
+          routertitle.value = item.meta .title
         }
       })
     } else {
@@ -37,8 +30,15 @@ const setBreadcrumb = () => {
     }
   })
 }
+watch(router, (newV: any): void => {
+  routerName.value = newV.name
+  setBreadcrumb()
+})
 
-setBreadcrumb()
+  setBreadcrumb()
+
+
+
 
 </script>
 <style scoped lang="scss">

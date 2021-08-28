@@ -26,11 +26,11 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
             store.token = token
             store.user = user
         }
-    }).then(res => {
+    }).then(() => {
         if (to.name != 'workbench') {
             next()
         } else {
-            if (store.user != '' && store.token != '') {
+            if ((store.user as unknown as string) != '' && store.token != '') {
                 next()
             } else {
                 message.warning('当前暂无登录，登录后重试！', 1000)
@@ -43,6 +43,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
             }
         }
     }).catch(err => {
+        console.log(err)
         window.sessionStorage.clear()
     })
 })

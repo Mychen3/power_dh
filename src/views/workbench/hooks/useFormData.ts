@@ -1,5 +1,5 @@
-import {reactive} from "vue";
-import {formData} from './formdata'
+import {reactive,ref} from "vue";
+import {formData, taskData} from './formdata'
 
 const rules = {
     title: [{required: true, message: '请输入卡片名称', trigger: 'blur'},],
@@ -10,6 +10,19 @@ const rules = {
     cardType: [{required: true, message: '请选择类型', trigger: 'change'}],
 };
 
+const taskRules = {
+    task_title: [{required: true, message: '请输入任务名称', trigger: 'blur'},],
+    task_content: [{required: true, message: '请输入任务内容', trigger: 'blur'}],
+    task_startDate: [{required: true, message: '请选择任务开始时间', trigger: 'change',type: 'object'}],
+};
+
+const taskForm_data= reactive<taskData>({
+    task_title:'',
+    task_content:'',
+    task_state:0,
+    task_startDate:''
+})
+
 const form_data = reactive<formData>({
     title: '',
     imgurl: '',
@@ -18,10 +31,14 @@ const form_data = reactive<formData>({
     home: '',
     cardType: null,
 })
-
+// 控制load
+const showLoad =ref<boolean>(false)
 
 export {
     rules,
-    form_data
+    form_data,
+    taskRules,
+    taskForm_data,
+    showLoad
 }
 

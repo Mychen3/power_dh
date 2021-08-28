@@ -27,6 +27,7 @@ serve.interceptors.response.use((response: AxiosResponse): AxiosResponse => {
             token: '',
         }
         store.token = ''
+        location.reload()
     }
     if (response.data.statusCode == 200) {
         return response

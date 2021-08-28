@@ -25,11 +25,13 @@ const on_login = async (emit:Function): Promise<void> => {
               window.sessionStorage.setItem('loginTip','0')
               emit('closeLogin')
               message.success("登录成功")
+               setTimeout(()=>{
+                   location.reload()
+               },2000)
           }else {
               btnLoding.value = false
           }
       }else {
-
           message.warning('请您输入邮箱和密码登录！');
       }
   }catch (e) {
