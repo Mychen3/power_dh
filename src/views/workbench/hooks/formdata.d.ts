@@ -12,6 +12,7 @@ interface validateType {
 }
 
 export interface taskData {
+    task_id?:number|null,
     task_title: string,
     task_content: string,
     task_state?: number,

@@ -4,41 +4,7 @@
       <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg"/>
       <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg"/>
     </div>
-    <div>
-      <a-popover trigger="click">
-        <template #content>
-          <div class="popover-content" ref="scrollRef">
-            <a-divider
-            >代办事件
-              <CoffeeOutlined style="color: rgb(70, 167, 218)"/>
-            </a-divider>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-            <a-card class="popover-card">
-              <span>123123123123123123123123123123123112312323</span>
-            </a-card>
-          </div>
-        </template>
-        <div class="popover-badge">
-          <a-badge dot>
-            <BellOutlined style="font-size: 17px"/>
-          </a-badge>
-        </div>
-      </a-popover>
-    </div>
+
 
     <!--未登录状态-->
     <div v-if="login_once()">
@@ -114,7 +80,6 @@ import {
   ExclamationCircleOutlined
 } from "@ant-design/icons-vue";
 import {handleFullScreen, FullScreenImg,} from "../../hooks/useFullScreen";
-import {scrollRef, scrollLoadDown} from "../../hooks/usescroll";
 import throttle from 'hk/usethrottle'
 import Login from './webLogin.vue'
 import {watch, ref, reactive, onMounted, createVNode, nextTick} from "vue";
@@ -229,14 +194,6 @@ nextTick(() => {
   window.onresize = throttle(onresize_change, 1000)
 })
 
-// 监听代办事件DOM,DOM打开就有元素 避免querySelector拿不到元素
-watch(
-    () => scrollRef,
-    (): void => {
-      document.querySelector(".popover-content")?.addEventListener("scroll", throttle(scrollLoadDown, 1000), {passive: true});
-    },
-    {deep: true}
-);
 
 onMounted(() => {
   changewidth.value = document.documentElement.clientWidth

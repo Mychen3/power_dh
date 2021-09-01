@@ -8,7 +8,7 @@ const req = (url: string, methods: string): Function => {
                 case 'get' || 'GET':
                      axios({url:url, params:data}).then(res=>{resolve(res)}).catch(err=>{ message.error('请求开小差了！'); resolve(err) })
                     break;
-                case 'post' || 'POST':
+                case 'post' || 'POST' || 'put' || 'PUT':
                      axios.post(url, data).then(res=>{resolve(res)}).catch(err=>{  message.error('请求开小差了！'); resolve(err)})
                     break;
                 default:

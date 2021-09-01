@@ -17,6 +17,7 @@ const taskRules = {
 };
 
 const taskForm_data= reactive<taskData>({
+    task_id:null,
     task_title:'',
     task_content:'',
     task_state:0,

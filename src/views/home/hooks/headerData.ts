@@ -1,4 +1,4 @@
-import {ref} from 'vue'
+import {ref,nextTick} from 'vue'
 
 //展开收起状态
 const collapsed = ref<boolean>(false)
@@ -14,6 +14,8 @@ const siderPosition = ref<string>('relative')
 
 // 遮罩层显示隐藏
 const showMask = ref<boolean>(false)
+
+
 
 
 export {

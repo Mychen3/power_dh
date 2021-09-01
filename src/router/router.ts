@@ -99,7 +99,7 @@ const routes: router[] = [
                 path: 'jsplugin',
                 name: 'jsplugin',
                 meta:{
-                    title:'js插件'
+                    title:'js优秀库'
                 },
                 component: () => import ("view/webdevelop/jsplugin/jsplugin.vue")
             }
