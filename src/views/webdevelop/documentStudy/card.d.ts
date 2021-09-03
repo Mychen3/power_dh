@@ -21,5 +21,5 @@ interface card_data extends Card  {
 export {
         card_data as cardData,
          Card
-} 
+}
 

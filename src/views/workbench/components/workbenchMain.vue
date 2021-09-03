@@ -3,8 +3,10 @@
     <!-- 左边 -->
     <div class="work-right">
       <a-row>
-        <a-col v-for="itme in 8" :xs="24" :lg="6">
-          <box-card></box-card>
+        <a-col v-for="item in randomCard.data" :xs="24" :lg="6" :key="item.card_id">
+          <box-card :card_id="item.card_id" :card_love="item.card_love" :title="item.card_title"
+                    :content="item.card_content" :cardImg="item.card_imgurl" :card_github="item.card_gitHub"
+                    :card_home="item.card_home"></box-card>
         </a-col>
       </a-row>
       <workbench-list></workbench-list>
@@ -95,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {reactive, ref,onMounted} from 'vue'
 import IconFont from 'hk/usemenuicon'
 import { message } from 'ant-design-vue'
 import WorkDrawerForm from './workDrawerForm.vue'
@@ -106,9 +108,12 @@ import useStore from '@/store/index'
 import { taskRules, taskForm_data, showLoad } from '../hooks/useFormData'
 import addTask from "../hooks/useAddtask";
 import { validateType } from '../hooks/formdata'
+import {  randomCard, getRandomCard} from  '@/hooks/useGetRandomCard'
+
 
 const icon = IconFont
 const store = useStore()
+
 
 // 控制抽屉打开关闭
 const addShowNav = ref<boolean>(false)
@@ -132,6 +137,7 @@ const taskReset = (): void => {
   taskForm_data.task_state = 0
 }
 
+// 控制是否在大屏显示
 const onShowNav = (): void => {
   if (store.clientWidth as number > 992) {
     addShowNav.value = true
@@ -139,6 +145,10 @@ const onShowNav = (): void => {
     message.warning('请在电脑上添加导航')
   }
 }
+
+
+
+getRandomCard(8)
 
 
 </script>

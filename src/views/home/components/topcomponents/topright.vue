@@ -58,7 +58,7 @@
   </div>
   <a-alert
       v-if="showTip()"
-      style="position: fixed;right: 0;top: 50px"
+      style="position: fixed;right: 0;top: 50px;z-index: 999"
       message="喝杯咖啡，静下心来工作吧！"
       description="Where there's a will, ·there's a way, kind of beautiful"
       type="success"
