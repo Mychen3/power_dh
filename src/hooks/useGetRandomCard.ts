@@ -25,7 +25,6 @@ const getRandomCard = async (x: number): Promise<void> => {
         randomArr.forEach((key:number)=>{
             randomCard.data.push(data_req.data.data[key])
         })
-        console.log( randomCard.data)
     }
 }
 

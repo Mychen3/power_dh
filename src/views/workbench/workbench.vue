@@ -1,5 +1,4 @@
 <template>
-
   <div class="workbench-content">
     <div class="workbench-top">
       <div>
@@ -13,11 +12,11 @@
       </div>
       <div class="workbench-top-sj">
         <div>当前待办事件</div>
-        <div>2/10</div>
+        <div>{{ dayData.noCompleted }}/{{ dayData.completed }}</div>
       </div>
     </div>
     <div class="workbench-box">
-   <Workbench-main></Workbench-main>
+      <Workbench-main></Workbench-main>
     </div>
   </div>
 
@@ -26,19 +25,18 @@
 <script lang="ts" setup>
 import useStore from '@/store/index'
 import WorkbenchMain from './components/workbenchMain.vue'
+import {dayData} from './hooks/useGetDayList'
 const store = useStore()
-
 
 
 </script>
 
 <style scoped lang="scss">
- @import "style/workbench";
+@import "style/workbench";
 
 .workbench-content {
   @include boxsize;
 }
-
 
 .workbench-top {
   height: 110px;
@@ -82,11 +80,13 @@ const store = useStore()
     flex-direction: column;
     align-items: center;
     justify-content: center;
-       &>div:nth-child(1){
-         display: flex;
-         flex-direction: column;
-       }
+
+    & > div:nth-child(1) {
+      display: flex;
+      flex-direction: column;
+    }
   }
+
   .workbench-top-tip {
     font-size: 13px;
     margin-top: 10px;

@@ -3,14 +3,28 @@ import vue from '@vitejs/plugin-vue'
 // @ts-ignore
 import ViteComponents, {AntDesignVueResolver} from 'vite-plugin-components';
 import {resolve} from 'path'
-
 // @ts-ignore
-import styleImport from 'vite-plugin-style-import';
-
+// import styleImport from 'vite-plugin-style-import';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    plugins: [vue(),
+        ViteComponents({
+            customComponentResolvers: [AntDesignVueResolver()],
+            globalComponentsDeclaration: true,
+        }),
 
+        // 按需加载样式
+        // styleImport({
+        //         libs: [{
+        //             libraryName: 'ant-design-vue',
+        //             esModule: true,
+        //             resolveStyle: (name: any) => {
+        //                 return `ant-design-vue/es/${name}/style/css`;
+        //             },
+        //         }]
+        //     })
+    ],
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src'),
@@ -29,22 +43,6 @@ export default defineConfig({
             },
         }
     },
-    plugins: [vue(),
-        ViteComponents({
-            customComponentResolvers: [AntDesignVueResolver()],
-            globalComponentsDeclaration: true,
-        }),
-        // 按需加载样式
-        // styleImport({
-        //         libs: [{
-        //             libraryName: 'ant-design-vue',
-        //             esModule: true,
-        //             resolveStyle: (name: any) => {
-        //                 return `ant-design-vue/es/${name}/style/css`;
-        //             },
-        //         }]
-        //     })
-        ],
 })
 
 

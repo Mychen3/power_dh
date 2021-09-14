@@ -5,13 +5,12 @@ import signin3 from './signin/signin3.png'
 import dataImg  from './workbench/dataImg.png'
 import taskImg  from './workbench/task.png'
 
-
-
 export {
     login,
     signin1,
     signin2,
     signin3,
     dataImg,
-    taskImg
+    taskImg,
+
 }

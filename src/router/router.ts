@@ -45,7 +45,7 @@ const routes: router[] = [
                 path: '/homeMenu',
                 name: 'homeMenu',
                 icon:'icon-zhuye1',
-                component: () => import ("view/homeMenu/homeMenu.vue")
+                component: () => import ("view/homemenu/homeMenu.vue")
             }
         ]
     },
@@ -91,7 +91,7 @@ const routes: router[] = [
                 path: 'jsframe',
                 name: 'jsframe',
                 meta:{
-                    title:'js框架'
+                    title:'JS框架'
                 },
                 component: () => import ("view/webdevelop/jsframe/jsframe.vue")
             },
@@ -99,9 +99,17 @@ const routes: router[] = [
                 path: 'jsplugin',
                 name: 'jsplugin',
                 meta:{
-                    title:'js优秀库'
+                    title:'JS优秀库'
                 },
                 component: () => import ("view/webdevelop/jsplugin/jsplugin.vue")
+            },
+            {
+                path: 'csstool',
+                name: 'csstool',
+                meta:{
+                    title:'CSS相关'
+                },
+                component: () => import ("view/webdevelop/csstool/cssTool.vue")
             }
         ]
     }
