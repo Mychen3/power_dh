@@ -20,7 +20,7 @@
       </template>
       <template #setTable="{record}">
         <a-space>
-          <a-button type="primary"  @click="onDelTask(record.task_id)">删除</a-button>
+          <a-button type="primary" @click="onDelTask(record.task_id)">删除</a-button>
         </a-space>
       </template>
     </a-table>

@@ -167,6 +167,7 @@ const onShowNav = (): void => {
 // 离开该路由
 onBeforeRouteLeave((to, from) => {
   showTaskList.value = false
+  showArticle.value =false
 })
 
 

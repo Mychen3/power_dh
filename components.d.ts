@@ -46,6 +46,7 @@ declare module 'vue' {
     ATable: typeof import('ant-design-vue/es')['Table']
     ATag: typeof import('ant-design-vue/es')['Tag']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
+    BoxArticle: typeof import('./src/components/boxArticle.vue')['default']
     BoxCard: typeof import('./src/components/boxCard.vue')['default']
     Loding: typeof import('./src/components/loding.vue')['default']
     LogInput: typeof import('./src/components/logInput.vue')['default']

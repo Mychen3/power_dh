@@ -21,7 +21,8 @@ export interface taskData {
 }
 
 
+
 export {
     formData,
-    validateType
+    validateType,
 }

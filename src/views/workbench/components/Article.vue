@@ -8,8 +8,7 @@
               <a-col :span="6" v-for="(item,index) in ArticleType" @click="onTag(item.val)">
                 <div :class="[showTag == item.val ? 'onClickTag':'tag-content']">
                   <span>{{ item.name }}</span>
-                </div
-                >
+                </div>
               </a-col>
             </a-row>
           </div>
@@ -28,12 +27,14 @@
 <script setup lang="ts">
 import {ref, reactive} from 'vue'
 import {ArticleType} from 'hk/labels'
+import addArticle  from '../hooks/useAddArticle'
 
 interface editorData {
   editorText: string,
   editorTitle: string
-  editorType: number | undefined
+  editorType: number | undefined | string
 }
+
 
 const emits = defineEmits(['close'])
 
@@ -58,8 +59,7 @@ const Close = () => {
 }
 
 const onEditorSave = (): void => {
-  console.log('123')
-
+  addArticle(editorData)
 }
 
 
