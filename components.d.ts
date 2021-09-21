@@ -3,7 +3,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AAffix: typeof import('ant-design-vue/es')['Affix']
     AAlert: typeof import('ant-design-vue/es')['Alert']
+    AAnchor: typeof import('ant-design-vue/es')['Anchor']
+    AAnchorLink: typeof import('ant-design-vue/es')['AnchorLink']
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
     ABadge: typeof import('ant-design-vue/es')['Badge']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
@@ -34,9 +37,11 @@ declare module 'vue' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AModal: typeof import('ant-design-vue/es')['Modal']
+    Anchor: typeof import('./src/components/Anchor.vue')['default']
     APagination: typeof import('ant-design-vue/es')['Pagination']
     APopover: typeof import('ant-design-vue/es')['Popover']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ArticleDetails: typeof import('./src/components/ArticleDetails.vue')['default']
     ASelect: typeof import('ant-design-vue/es')['Select']
     ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     ASkeleton: typeof import('ant-design-vue/es')['Skeleton']
@@ -48,6 +53,7 @@ declare module 'vue' {
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
     BoxArticle: typeof import('./src/components/boxArticle.vue')['default']
     BoxCard: typeof import('./src/components/boxCard.vue')['default']
+    CatalogueArticle: typeof import('./src/components/CatalogueArticle.vue')['default']
     Loding: typeof import('./src/components/loding.vue')['default']
     LogInput: typeof import('./src/components/logInput.vue')['default']
     Mixmodel: typeof import('./src/components/Mixmodel.vue')['default']

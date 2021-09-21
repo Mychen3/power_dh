@@ -48,7 +48,6 @@ const editorData = reactive<editorData>({
 
 const showTag = ref<number>(0)
 
-// 通过组件循环的下标去判断该不该亮!
 const onTag = (val: number): void => {
   showTag.value = val
   editorData.editorType = val

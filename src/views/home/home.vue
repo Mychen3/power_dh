@@ -50,7 +50,7 @@
             <div @click="maskClose" :class="{'content-mask':showMask}"></div>
             <router-view v-slot="{ Component }">
               <transition name="leftgo">
-                <keep-alive>
+                <keep-alive exclude="articleDetails">
                   <component class="componentSty" :is="Component"/>
                 </keep-alive>
               </transition>
@@ -71,7 +71,7 @@ import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import showone_level from '@/router/hooks/useRouter'
 import IconFont from '@/hooks/usemenuicon'
-import {watch} from 'vue'
+import { watch} from 'vue'
 import {useRouter} from 'vue-router'
 
 
@@ -84,6 +84,8 @@ const goRouter = (item: { key: string }, key: any, keyPath: string) => {
     name: item.key
   })
 }
+
+
 
 // 触发响应式布局断点时的回调
 const onBreakpoint = (broken: boolean): void => {
@@ -101,7 +103,6 @@ watch(brokenData, (newV: boolean): void => {
     showMask.value = false
   }
 })
-
 </script>
 
 <style scoped lang="scss">

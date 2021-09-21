@@ -46,6 +46,18 @@ const routes: router[] = [
                 name: 'homeMenu',
                 icon:'icon-zhuye1',
                 component: () => import ("view/homemenu/homeMenu.vue")
+            },
+        ]
+    },
+    {
+        path: '/article',
+        name: 'article',
+        component: home,
+        children: [
+            {
+                path: 'articleDetails',
+                name: 'articleDetails',
+                component: () => import ("comp/ArticleDetails.vue")
             }
         ]
     },
