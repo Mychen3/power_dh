@@ -124,6 +124,26 @@ const routes: router[] = [
                 component: () => import ("view/webdevelop/csstool/cssTool.vue")
             }
         ]
+    },
+    {
+        path: '/articleText',
+        name: 'articleText',
+        component: home,
+        meta: {
+            title: '记录知识'
+        },
+        icon:'icon-zhishijiushicaifu',
+        children: [
+            {
+                path: 'JavaScript',
+                name: 'JavaScript',
+                meta:{
+                    title:'JavaScript'
+                },
+                component: () => import ("view/article/javascript/javascript.vue")
+            },
+
+        ]
     }
 ]
 

@@ -1,24 +1,29 @@
 
-export const ArticleType:{name:string,val:number}[] = [
+export const ArticleType:{name:string,val:number,icon:string}[] = [
     {
         name:'HTML',
-        val:1
+        val:1,
+        icon:'icon-html'
     },
     {
         name:'CSS',
-        val:2
+        val:2,
+        icon:'icon-css'
     },
     {
         name:'JavaScript',
-        val:3
+        val:3,
+        icon:'icon-JS'
     },
     {
         name:'TypeScript',
-        val:4
+        val:4,
+        icon:'icon-ts'
     },
     {
         name:'个人心得',
-        val:5
+        val:5,
+        icon:'icon-xindeweikong'
     }
 ]
 

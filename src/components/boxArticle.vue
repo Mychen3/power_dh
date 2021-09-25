@@ -39,7 +39,7 @@ const props = defineProps({
   article_type: Number,
 })
 
-const formatType = (type: number): string => {
+const formatType = (type: number|undefined): string => {
   let val: string = '';
   ArticleType.forEach((item: { name: string, val: number }) => {
     if (item.val == type) {
@@ -50,11 +50,11 @@ const formatType = (type: number): string => {
 }
 
 
-const formatDate = (dateValue: string): string => {
+const formatDate = (dateValue: string|undefined): string => {
   return dayjs(dateValue).format('YYYY-MM-DD')
 }
 
-const formatContent = (strValue: string | null): string => {
+const formatContent = (strValue: string | null |any): string => {
   if (strValue !== null && strValue !== '') {
     const reg = /[\u4e00-\u9fa5]/g;
     return (strValue.match(reg) as Array<string>).join('');

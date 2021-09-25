@@ -2,43 +2,49 @@
   <div class="bread-content">
     <a-breadcrumb>
       <a-breadcrumb-item>首页</a-breadcrumb-item>
-      <a-breadcrumb-item><span>{{ routertitle }}</span></a-breadcrumb-item>
-      <a-breadcrumb-item><span style="color: #999999;font-weight: normal">{{ router.meta.title }}</span>
-      </a-breadcrumb-item>
+      <a-breadcrumb-item v-if="breadcrumbName.oneTitle !== '首页'">{{ breadcrumbName.oneTitle }}</a-breadcrumb-item>
+      <a-breadcrumb-item v-if="breadcrumbName.articleTitle !=='首页'">{{breadcrumbName.articleTitle}}</a-breadcrumb-item>
+<!--      <a-breadcrumb-item  >{{breadcrumbName.threeTitle }}</a-breadcrumb-item>-->
+      <!--   <a-breadcrumb-item ></a-breadcrumb-item>-->
     </a-breadcrumb>
   </div>
 </template>
 <script setup lang="ts">
-import {ref, watch} from 'vue'
+import {reactive, watch} from 'vue'
 import {useRoute} from 'vue-router'
-import showone_level from '@/router/hooks/useRouter'
+import {ArticleType} from 'hk/labels'
+
+
 const router = useRoute()
-const routerName = ref('')
-const routertitle = ref<string | unknown>('')
 
-
-const setBreadcrumb = () => {
-  showone_level.forEach((item: { children: any[]; meta: { title: string } }) => {
-    if (item.children) {
-      item.children.forEach(items => {
-        if (items.name == routerName.value) {
-          routertitle.value = item.meta .title
-        }
-      })
-    } else {
-      routertitle.value = router.meta.title
-    }
-  })
-}
-watch(router, (newV: any): void => {
-  routerName.value = newV.name
-  setBreadcrumb()
+const breadcrumbName = reactive({
+  oneTitle: '',
+  twoTitle: '',
+  threeTitle: '',
+  fourTitle: '',
+  articleTitle: ''
 })
 
-  setBreadcrumb()
+const firstLoad = () => {
+  router.matched.forEach((item: any, index) => {
+    if (!index) {
+      breadcrumbName.oneTitle = item.meta.title
+    } else {
+      breadcrumbName.articleTitle = item.meta.title
+    }
+    if (item.name == "articleDetails") {
+      breadcrumbName.oneTitle = '知识记录'
+    }
+  })
+
+}
+
+watch(() => router.matched, (newVal) => {
+  firstLoad()
+})
 
 
-
+firstLoad()
 
 </script>
 <style scoped lang="scss">

@@ -4,8 +4,6 @@
       <FullscreenOutlined style="font-size: 17px" v-show="FullScreenImg"/>
       <FullscreenExitOutlined style="font-size: 17px" v-show="!FullScreenImg"/>
     </div>
-
-
     <!--未登录状态-->
     <div v-if="login_once()">
       <a-dropdown>

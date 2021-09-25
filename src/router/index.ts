@@ -3,18 +3,22 @@ import {
     createWebHashHistory,
     NavigationGuardNext,
     RouteLocationNormalized,
-    RouterOptions
+    RouterOptions,
+    createWebHistory
 } from "vue-router";
 import routers from './router'
 import useStore from "@/store";
 import {nextTick} from 'vue'
 import {message} from 'ant-design-vue'
 
+// const router = createRouter(<RouterOptions>{
+//     history: createWebHashHistory(),
+//     routes: routers,
+// })
 const router = createRouter(<RouterOptions>{
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: routers,
 })
-
 
 // 路由前面置守卫
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {

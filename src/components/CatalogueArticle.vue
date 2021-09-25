@@ -1,9 +1,10 @@
 <template>
   <div class="CatalogueArticle-box">
-    <div class="catalogueArticle-anchor">
+    <div class="catalogueArticle-anchor" v-if="AnchorShow">
       <div>目录导航</div>
       <div class="anchor-content">
-        <div @click="toAnchor(item.dataLine)" :class="[item.showColor? 'showClass':'']" :key="item.dataLine" v-for="item in anchorData.data">{{ item.title }}
+        <div @click="toAnchor(item.dataLine)" :class="[item.showColor? 'showClass':'']" :key="item.dataLine"
+             v-for="item in anchorData.data">{{ item.title }}
         </div>
       </div>
     </div>
@@ -11,15 +12,16 @@
 </template>
 
 <script setup lang="ts">
-import {nextTick, reactive} from "vue";
+import {nextTick, reactive, ref} from "vue";
 import throttle from 'hk/usethrottle'
 
 
+const AnchorShow = ref<boolean>(false)
 
-
-interface anchorData{
-  data:{title:string,offsetTop:number,dataLine:number,showColor:boolean}[] | {[key:string]:number|string|boolean}[]
+interface anchorData {
+  data: { title: string, offsetTop: number, dataLine: number | string | any, showColor: boolean }[] | { [key: string]: number | string | boolean }[]
 }
+
 const props = defineProps({
   previewRef: {
     type: null
@@ -35,9 +37,9 @@ const anchorData = reactive<anchorData>({
 
 const scrollPosition = () => {
   let previewDom = props.previewRef.$el.querySelectorAll("h1,h2,h3,h4,h5,h6")
+  AnchorShow.value = previewDom.length != 0;
   let arrForm = Array.from(previewDom)
-
-  arrForm.forEach((item: any, index:number) => {
+  arrForm.forEach((item: any, index: number) => {
     anchorData.data[index] = {
       title: item.innerHTML,
       offsetTop: item.offsetTop,
@@ -48,14 +50,14 @@ const scrollPosition = () => {
   })
 }
 
-const watchHeight = ():void => {
+const watchHeight = (): void => {
   props.articleDetailsDom.addEventListener("scroll", throttle(watchCallback, 500), {passive: true});
 }
 
 
-const watchCallback = ():void => {
+const watchCallback = (): void => {
   anchorData.data.forEach((item: any, index: number) => {
-    if (props.articleDetailsDom.scrollTop >= (item.offsetTop - 80)) {
+    if (props.articleDetailsDom.scrollTop >= (item.offsetTop - 200)) {
       item.showColor = true
       if (index > 0) {
         let i = index - 1 ? index - 1 : 0
@@ -68,7 +70,7 @@ const watchCallback = ():void => {
 }
 
 
-const toAnchor = (dataLine:number):void => {
+const toAnchor = (dataLine: string | number): void => {
   document.querySelector(`#id${dataLine}`)?.scrollIntoView({
     // 定义动画效果
     behavior: "smooth",

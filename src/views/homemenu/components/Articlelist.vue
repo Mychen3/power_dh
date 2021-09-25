@@ -12,7 +12,7 @@ import {getArticleList, ArticleList} from '../hooks/useGetArticleList'
 import {useRouter} from "vue-router";
 const router = useRouter()
 
-const toDetails = (article_id:number) => {
+const toDetails = (article_id:number|string) => {
   router.push({
       name:'articleDetails',
       query:{

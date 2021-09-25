@@ -9,6 +9,15 @@
         </div>
         <loding v-if="loading.lodingShow" :title="loading.lodingtext"></loding>
         <v-md-preview  ref="previewRef" :text="detailsText.text"></v-md-preview>
+        <footer class="article-footer">
+           <span>推荐阅读</span>
+          <a-divider>推荐文章</a-divider>
+          <a-row  :gutter="[16,16]" style="padding: 10px 20px 30px 20px">
+            <a-col  :xs="24" :lg="8" v-for="item in articleCardData.data" :key="item.article_id">
+          <article-card :cardData="item"></article-card>
+            </a-col>
+          </a-row>
+        </footer>
       </a-col>
       <a-col :xs="0" :lg="5"> <CatalogueArticle  :articleDetailsDom="articleDetailsDom"  :previewRef="previewRef"></CatalogueArticle> </a-col>
     </a-row>
@@ -24,11 +33,13 @@ export default defineComponent({
 
 <script setup lang="ts">
 
-import {ArticleId_req} from 'api/article/article'
-import {reactive, onMounted, ref,defineComponent} from 'vue'
+import {ArticleId_req,queryRandom_req} from 'api/article/article'
+import {reactive, onMounted, ref} from 'vue'
 import {useRoute} from 'vue-router'
 import {FireOutlined} from '@ant-design/icons-vue';
+
 const route = useRoute()
+
 
 interface detailsText {
   text: string,
@@ -38,6 +49,11 @@ interface loadingType {
   lodingtext: string,
   lodingShow: boolean
 }
+
+interface articleCardData {
+  data: {[key:string]:string}[],
+}
+
 const previewRef =ref<HTMLElement|any>()
 
 const articleDetailsDom = ref<HTMLElement|any>()
@@ -47,10 +63,17 @@ const loading = reactive<loadingType>({
   lodingShow: false
 })
 
+
+
 const detailsText = reactive<detailsText>({
   text: '',
   title: ''
 })
+
+const articleCardData = reactive<articleCardData>({
+  data: [],
+})
+
 
 const getDetailsData = async (): Promise<void> => {
   loading.lodingShow = true
@@ -60,6 +83,13 @@ const getDetailsData = async (): Promise<void> => {
     detailsText.text = dataReq.data.data.article_content;
     detailsText.title = dataReq.data.data.article_title
   }
+  // 文章卡片请求的函数
+  const articleCard = await queryRandom_req()
+  if (articleCard.data.statusCode == 200){
+    articleCard.data.data.forEach((item:{})=>{
+      articleCardData.data.push(item)
+    })
+  }
 }
 
 onMounted(() => {
@@ -68,11 +98,6 @@ onMounted(() => {
 })
 
 </script>
-
-
-
-
-
 
 <style scoped lang="scss">
 .article-details {
@@ -90,8 +115,16 @@ onMounted(() => {
 }
 
 .content-row {
-
   margin-top: 10px;
+}
+.article-footer{
+  background-color: #ffffff;
+  padding-top: 100px;
+     &>span:nth-child(1){
+       padding-left: 10px;
+       color: #2c3e50;
+       font-size: 15px;
+     }
 }
 
 </style>
