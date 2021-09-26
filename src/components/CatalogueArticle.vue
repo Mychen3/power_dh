@@ -40,6 +40,7 @@ const scrollPosition = () => {
   AnchorShow.value = previewDom.length != 0;
   let arrForm = Array.from(previewDom)
   arrForm.forEach((item: any, index: number) => {
+    // 通过data数组按下标存储他的标题标签以及位置
     anchorData.data[index] = {
       title: item.innerHTML,
       offsetTop: item.offsetTop,

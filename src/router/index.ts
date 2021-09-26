@@ -1,6 +1,5 @@
 import {
     createRouter,
-    createWebHashHistory,
     NavigationGuardNext,
     RouteLocationNormalized,
     RouterOptions,
@@ -23,6 +22,7 @@ const router = createRouter(<RouterOptions>{
 // 路由前面置守卫
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     const store = useStore()
+    document.title = '往的个人博客-前端技术的分享'
     nextTick((): void => {
         const user = JSON.parse(<string>window.sessionStorage.getItem('user'))
         const token = window.sessionStorage.getItem('token')

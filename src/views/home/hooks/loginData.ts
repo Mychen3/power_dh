@@ -1,4 +1,5 @@
 import {reactive, ref} from 'vue'
+
 import {regusterFrom,logonFrom} from '../hooks/login'
 
 const regusterFrom = reactive<regusterFrom>({

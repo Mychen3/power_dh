@@ -3418,13 +3418,13 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinia@^2.0.0-rc.4:
-  version "2.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.0-rc.4.tgz#43fca89aeb8d397ca9900f001c2125c4d6765dd6"
-  integrity sha512-I43V1TIFyDWT4UTi1CPLQXQZYXGQHQMKpDPI+oxC2fv0c+ej0fQBoKCn4WbfRWB+Vf5chhWM97GFLI+OWmUQEQ==
+pinia@^2.0.0-rc.9:
+  version "2.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.0-rc.9.tgz#ea0812ea28f8197f14767e9b731ae10d3a523803"
+  integrity sha512-JrFnxKbuyYPEZ6ZS56sBHRzabZj+5xkJj8jxCHGNJ1h2I824QJuLXJVV/3pgkUw0pfXYrRxcO6EiV9+wapSicg==
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.15"
-    vue-demi latest
+    vue-demi "*"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
@@ -4389,10 +4389,10 @@ vite@^2.4.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-demi@latest:
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.3.tgz#dd7495b92b495ecfa35675bf024b1358a7add150"
-  integrity sha512-DpM0TTMpclRZDV6AIacgg837zrim/C9Zn+2ztXBs9hsESJN9vC83ztjTe4KC4HgJuVle8YUjPp7HTwWtwOHfmg==
+vue-demi@*:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.4.tgz#6101992fe4724cf5634018a16e953f3052e94e2a"
+  integrity sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A==
 
 vue-router@^4.0.10:
   version "4.0.11"

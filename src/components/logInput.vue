@@ -12,6 +12,7 @@ import { ref } from 'vue'
 
 const props = defineProps({
   placeholder: String,
+
   modelValue: String,
   type:{
     type:String,
@@ -22,6 +23,7 @@ const props = defineProps({
 })
 
 const inputValue = ref(props.modelValue)
+
 const emits = defineEmits(['update:modelValue', 'focus', 'blur'])
 emits('update:modelValue', inputValue)
 

@@ -14,7 +14,7 @@
     "echarts": "^5.1.2",
     "lodash": "^4.17.21",
     "npm": "7.20.6",
-    "pinia": "^2.0.0-rc.4",
+    "pinia": "^2.0.0-rc.9",
     "screenfull": "^5.1.0",
     "vite-plugin-style-import": "^1.2.1",
     "vue": "^3.2.1",

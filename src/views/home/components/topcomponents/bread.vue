@@ -3,8 +3,12 @@
     <a-breadcrumb>
       <a-breadcrumb-item>首页</a-breadcrumb-item>
       <a-breadcrumb-item v-if="breadcrumbName.oneTitle !== '首页'">{{ breadcrumbName.oneTitle }}</a-breadcrumb-item>
-      <a-breadcrumb-item v-if="breadcrumbName.articleTitle !=='首页'">{{breadcrumbName.articleTitle}}</a-breadcrumb-item>
-<!--      <a-breadcrumb-item  >{{breadcrumbName.threeTitle }}</a-breadcrumb-item>-->
+      <a-breadcrumb-item v-if="breadcrumbName.articleTitle !=='首页'">{{ breadcrumbName.articleTitle }}
+      </a-breadcrumb-item>
+      <a-breadcrumb-item v-if="public_articleDetails.articleTitle">{{
+          public_articleDetails.articleTitle
+        }}
+      </a-breadcrumb-item>
       <!--   <a-breadcrumb-item ></a-breadcrumb-item>-->
     </a-breadcrumb>
   </div>
@@ -13,6 +17,7 @@
 import {reactive, watch} from 'vue'
 import {useRoute} from 'vue-router'
 import {ArticleType} from 'hk/labels'
+import {public_articleDetails} from 'hk/publicValue'
 
 
 const router = useRoute()
@@ -34,15 +39,23 @@ const firstLoad = () => {
     }
     if (item.name == "articleDetails") {
       breadcrumbName.oneTitle = '知识记录'
+
+      ArticleType.forEach((names) => {
+        setTimeout(() => {
+          if (names.val == public_articleDetails.articleType) {
+            breadcrumbName.articleTitle = names.name
+          }
+        }, 200)
+      })
+    } else {
+      public_articleDetails.articleTitle = undefined
     }
   })
-
 }
 
-watch(() => router.matched, (newVal) => {
+watch(() => router.matched,() => {
   firstLoad()
 })
-
 
 firstLoad()
 

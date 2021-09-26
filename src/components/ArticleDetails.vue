@@ -37,7 +37,7 @@ import {ArticleId_req,queryRandom_req} from 'api/article/article'
 import {reactive, onMounted, ref} from 'vue'
 import {useRoute} from 'vue-router'
 import {FireOutlined} from '@ant-design/icons-vue';
-
+import {public_articleDetails} from 'hk/publicValue'
 const route = useRoute()
 
 
@@ -82,6 +82,8 @@ const getDetailsData = async (): Promise<void> => {
     loading.lodingShow = false
     detailsText.text = dataReq.data.data.article_content;
     detailsText.title = dataReq.data.data.article_title
+    public_articleDetails.articleType = dataReq.data.data.article_type
+    public_articleDetails.articleTitle = dataReq.data.data.article_title
   }
   // 文章卡片请求的函数
   const articleCard = await queryRandom_req()
