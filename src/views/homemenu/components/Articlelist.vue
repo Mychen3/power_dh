@@ -29,6 +29,7 @@ getArticleList()
   width: 100%;
   padding: 15px 15px;
   background-color: #fff;
+  border-radius: 5px;
 
 }
 
