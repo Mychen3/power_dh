@@ -2,11 +2,13 @@ import {ArticleList_req} from 'api/article/article'
 import {reactive} from 'vue'
 
 interface ArticleLis {
-    list: {[key: string]: number | string }[]
+    list: {[key: string]: number | string }[],
+    skeletonLoading:boolean
 }
 
 const ArticleList = reactive<ArticleLis>({
-    list: []
+    list: [],
+    skeletonLoading:true,
 })
 
 const getArticleList = async (): Promise<void> => {
@@ -16,6 +18,7 @@ const getArticleList = async (): Promise<void> => {
             req.data.data.forEach((item:any)=>{
                    ArticleList.list.push(item)
                })
+            ArticleList.skeletonLoading =false
         }
 }
 

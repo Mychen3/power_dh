@@ -1,5 +1,6 @@
 <template>
   <div class="articleList-content">
+    <a-skeleton active v-for="index in 6" :key="index"  :loading="ArticleList.skeletonLoading"/>
     <box-article @click="toDetails(item.article_id)" v-for="item in ArticleList.list" :article_id="item.article_id"
                  :article_startDate="item.article_startDate" :article_title="item.article_title"
                  :article_content="item.article_content" :article_type="item.article_type"

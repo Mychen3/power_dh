@@ -2,10 +2,8 @@
   <div class="homeMenu-content">
     <div>
       <a-row class="content-row">
-        <a-col :xs="0" :lg="5">
-          <InfoMsg></InfoMsg>
-        </a-col>
-        <a-col :xs="24" :lg="14"> <article-list></article-list></a-col>
+        <a-col :xs="0" :lg="5"><InfoMsg></InfoMsg></a-col>
+        <a-col :xs="24" :lg="14"><article-list></article-list></a-col>
         <a-col :xs="0" :lg="5"><user-info></user-info></a-col>
       </a-row>
       </div>
