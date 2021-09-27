@@ -8,3 +8,5 @@ export const ArticleList_req = http('/article/queryArticle','get')
 export const ArticleId_req = http('/article/queryIdArticle','get')
 // 随机查询为文章
 export const queryRandom_req = http('/article/queryRandom','get')
+// 根据类型查询文章列表
+export const queryTypeList_req = http('/article/queryType','get')

@@ -140,7 +140,46 @@ const routes: router[] = [
                 meta:{
                     title:'JavaScript'
                 },
-                component: () => import ("view/article/javascript/javascript.vue")
+                props:{typeId:3},
+                component: () => import ("view/articleType/articleType.vue"),
+
+            },
+            {
+                path: 'CSS',
+                name: 'CSS',
+                meta:{
+                    title:'CSS'
+                },
+                props:{typeId:2},
+                component: () => import ("view/articleType/articleType.vue"),
+
+            },
+            {
+                path: 'HTML',
+                name: 'HTML',
+                meta:{
+                    title:'HTML'
+                },
+                props:{typeId:1},
+                component: () => import ("view/articleType/articleType.vue"),
+            },
+            {
+                path: 'TypeScript',
+                name: 'TypeScript',
+                meta:{
+                    title:'TypeScript'
+                },
+                props:{typeId:4},
+                component: () => import ("view/articleType/articleType.vue"),
+            },
+            {
+                path: 'XD',
+                name: 'XD',
+                meta:{
+                    title:'个人心得'
+                },
+                props:{typeId:5},
+                component: () => import ("view/articleType/articleType.vue"),
             },
 
         ]

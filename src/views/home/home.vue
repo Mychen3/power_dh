@@ -75,8 +75,6 @@ import { watch} from 'vue'
 import {useRouter} from 'vue-router'
 
 
-
-
 const router = useRouter()
 // 路由跳转
 const goRouter = (item: { key: string }, key: any, keyPath: string) => {

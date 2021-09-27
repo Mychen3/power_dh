@@ -1,7 +1,7 @@
 <template>
   <div  class="article-details">
     <a-row class="content-row">
-      <a-col :xs="0" :lg="5">Col</a-col>
+      <a-col :xs="0" :lg="5"></a-col>
       <a-col :xs="24" :lg="14">
         <div class="article-details-top">
           <FireOutlined style="margin-right: 5px"/>
