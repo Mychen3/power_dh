@@ -48,5 +48,9 @@ export const cardType:{name:string,val:string}[] = [
     {
         name:'前端工具',
         val:'5'
+    },
+    {
+        name:'UI组件库',
+        val:'6'
     }
     ]

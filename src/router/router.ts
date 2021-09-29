@@ -122,6 +122,14 @@ const routes: router[] = [
                     title:'CSS相关'
                 },
                 component: () => import ("view/webdevelop/csstool/cssTool.vue")
+            },
+            {
+                path: 'ui',
+                name: 'ui',
+                meta:{
+                    title:'UI组件库'
+                },
+                component: () => import ("view/webdevelop/ui/ui.vue")
             }
         ]
     },

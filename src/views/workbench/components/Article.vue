@@ -5,7 +5,7 @@
         <template #content>
           <div style="width: 500px">
             <a-row :gutter="[6,6]">
-              <a-col :span="6" v-for="(item,index) in ArticleType" @click="onTag(item.val)">
+              <a-col :span="6" v-for="item in ArticleType" @click="onTag(item.val)">
                 <div :class="[showTag == item.val ? 'onClickTag':'tag-content']">
                   <span>{{ item.name }}</span>
                 </div>
@@ -27,14 +27,13 @@
 <script setup lang="ts">
 import {ref, reactive} from 'vue'
 import {ArticleType} from 'hk/labels'
-import addArticle  from '../hooks/useAddArticle'
+import addArticle from '../hooks/useAddArticle'
 
 interface editorData {
   editorText: string,
   editorTitle: string
   editorType: number | undefined | string
 }
-
 
 const emits = defineEmits(['close'])
 
@@ -45,14 +44,11 @@ const editorData = reactive<editorData>({
   editorTitle: '',
   editorType: undefined
 })
-
 const showTag = ref<number>(0)
-
 const onTag = (val: number): void => {
   showTag.value = val
   editorData.editorType = val
 }
-
 const Close = () => {
   emits('close')
 }
