@@ -191,6 +191,26 @@ const routes: router[] = [
             },
 
         ]
+    }, {
+        path: '/toolUtil',
+        name: 'toolUtil',
+        component: home,
+        meta: {
+            title: '工具箱'
+        },
+        icon:'icon-gongjuxiang',
+        children: [
+            {
+                path: 'Glassmorphism',
+                name: 'Glassmorphism',
+                meta:{
+                    title:'玻璃特效生成器'
+                },
+                props:{typeId:3},
+                component: () => import ("view/toolUtil/Glassmorphism/Glassmorphism.vue"),
+
+            },
+        ]
     }
 ]
 

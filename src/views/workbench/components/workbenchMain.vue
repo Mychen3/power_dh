@@ -87,6 +87,7 @@
       <mixmodel v-model:visible="showTaskList">
         <TaskList @close="close"></TaskList>
       </mixmodel>
+
       <mixmodel v-model:visible="showArticle">
         <Article @close="showArticle=false"></Article>
       </mixmodel>

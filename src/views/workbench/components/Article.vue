@@ -35,6 +35,7 @@ interface editorData {
   editorType: number | undefined | string
 }
 
+
 const emits = defineEmits(['close'])
 
 const editorHeight = ref<number | string>(window.innerHeight - 135 + 'px')
@@ -44,11 +45,14 @@ const editorData = reactive<editorData>({
   editorTitle: '',
   editorType: undefined
 })
+
 const showTag = ref<number>(0)
+
 const onTag = (val: number): void => {
   showTag.value = val
   editorData.editorType = val
 }
+
 const Close = () => {
   emits('close')
 }
