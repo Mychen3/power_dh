@@ -87,7 +87,7 @@ const routes: router[] = [
         name: 'webdevelop',
         component: home,
         meta: {
-            title: '前端'
+            title: '编程导航'
         },
         icon:'icon-qianduan',
         children: [
@@ -130,6 +130,14 @@ const routes: router[] = [
                     title:'UI组件库'
                 },
                 component: () => import ("view/webdevelop/ui/ui.vue")
+            },
+            {
+                path: 'util',
+                name: 'util',
+                meta:{
+                    title:'工具相关'
+                },
+                component: () => import ("view/webdevelop/utils/utils.vue")
             }
         ]
     },
@@ -208,6 +216,16 @@ const routes: router[] = [
                 },
                 props:{typeId:3},
                 component: () => import ("view/toolUtil/Glassmorphism/Glassmorphism.vue"),
+
+            },
+            {
+                path: 'BoxShadow',
+                name: 'BoxShadow',
+                meta:{
+                    title:'盒子阴影生成器'
+                },
+                props:{typeId:3},
+                component: () => import ("view/toolUtil/boxshadow/BoxShadow.vue"),
 
             },
         ]

@@ -12,18 +12,15 @@
         <RollbackOutlined @click="()=>{emits('close')}" style="font-size: 20px; margin-right: 10px"/>
       </div>
     </div>
-    <a-table :loading="showLoading" :scroll="{y:tableHeight+'px'}" :pagination="false" :columns="listData.columns"
-             rowKey="task_id"
-             :data-source="listData.data">
-      <template #task_state="{text}">
-        <a-tag :color="text == 0 ? 'warning':'success'">{{ text == 0 ? '等待世间美好' : '已完成' }}</a-tag>
-      </template>
-      <template #setTable="{record}">
-        <a-space>
-          <a-button type="primary" @click="onDelTask(record.task_id)">删除</a-button>
-        </a-space>
+    <a-table :loading="showLoading" :scroll="{y:tableHeight+'px'}"   :pagination="false" :columns="listData.columns" rowKey="task_id" :data-source="listData.data">
+
+      <template #bodyCell="{text, record, index, column}">
+            <div v-if="!['setTable','task_state'].includes(column.key)">{{text}}</div>
+            <a-tag v-else-if="column.key === 'task_state' "  :color="text === 0 ? 'warning':'success'">{{ text === 0 ? '等待世间美好' : '已完成' }}</a-tag>
+            <a-button v-else type="primary" @click="onDelTask(record.task_id)">删除</a-button>
       </template>
     </a-table>
+
     <div style="margin-top: 10px;display: flex;justify-content: end">
       <a-pagination @change="onChange" v-model:current="query_Param.current" :total="total" showLessItems
                     v-model:pageSize="query_Param.pageSize" :showTotal="() => `共 ${total} 条 `"/>
@@ -58,7 +55,6 @@ const listData = reactive({
       title: '待办当前状态',
       dataIndex: 'task_state',
       align: 'center',
-      slots: {customRender: 'task_state'},
       key: 'task_state'
     },
     {
@@ -77,7 +73,6 @@ const listData = reactive({
       title: '操作',
       align: 'center',
       key: 'setTable',
-      slots: {customRender: 'setTable'}
     }],
   data: [{}]
 }) as listDataType
@@ -85,7 +80,7 @@ const listData = reactive({
 // 表格高度
 const tableHeight = ref<number>(window.innerHeight - 210)
 // 总数
-const total = ref<number>()
+const total = ref<number>(0)
 // loding
 const showLoading = ref<boolean>(false)
 

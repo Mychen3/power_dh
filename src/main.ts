@@ -2,14 +2,11 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import router from "@/router/index"
 import {createPinia} from "pinia";
-// import 'default-passive-events'
-import 'moment/dist/locale/zh-cn'
+
 import Antd from 'ant-design-vue';
 import '@/styles/global.css'
 import 'ant-design-vue/es/message/style/css'
 import 'ant-design-vue/es/Modal/style/css'
-
-
 // @ts-ignore
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';

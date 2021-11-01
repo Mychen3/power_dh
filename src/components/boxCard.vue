@@ -1,8 +1,11 @@
 <template>
-  <a-card hoverable class="card-box" :bodyStyle="{overflow: 'hidden','text-overflow':'ellipsis', height:'120px','font-size':'15px'}">
-    <a-card-meta  :title="props.title" :description="props.content">
+  <a-card hoverable class="card-box" :bodyStyle="{ height:'120px','font-size':'15px'}">
+    <a-card-meta :title="props.title">
       <template #avatar>
         <a-avatar :src="props.cardImg"/>
+      </template>
+      <template #description>
+        <a-typography-paragraph  :ellipsis="{ rows: 2}" :content="props.content"></a-typography-paragraph>
       </template>
     </a-card-meta>
     <template class="ant-card-actions" #actions>
@@ -19,14 +22,18 @@
 import {LikeOutlined, GithubOutlined, ReadOutlined} from '@ant-design/icons-vue';
 import {givelike_req} from 'api/card/cardAPi'
 import {ref} from "vue";
-
 let win = ref(window)
 
-
 const props = defineProps({
-  card_id: [String,Number],
+  card_id: [String, Number],
   title: String,
-  content: String,
+  content: {
+    type:String,
+    default:()=>{
+      return '请稍等'
+    }
+  },
+
   cardImg: String,
   card_github: String,
   card_home: String,
@@ -36,7 +43,10 @@ const props = defineProps({
 
 const love_quantity = ref<number>(parseInt((props.card_love as string)))
 
-let timer:any = null
+let timer: any = null
+
+
+
 
 /*
 * @throttle: 点赞函数
@@ -49,17 +59,14 @@ const onGiveLike = (): void => {
     card_love: love_quantity.value,
     card_id: props.card_id
   }
-
   // 防抖
   if (timer) {
     clearTimeout(timer)
   }
   timer = setTimeout(() => {
     givelike_req(param)
-    timer=null
+    timer = null
   }, 1000)
-
-
 }
 
 

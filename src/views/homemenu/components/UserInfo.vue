@@ -38,6 +38,9 @@
       </a-space>
     </div>
     <div>
+      <img src="https://test-chen-66.oss-cn-hangzhou.aliyuncs.com/power/public/userhome.svg">
+    </div>
+    <div>
       <span @click="onGoto" style="cursor: pointer">湘ICP备19022890号</span>
       <span>系统由 Vue3 + TypeScript + Node</span>
       <span>Koa2 + Ant Design Vue 驱动</span>
@@ -47,7 +50,7 @@
 
 <script setup lang="ts">
 const onGoto = () => {
-    window.open('https://beian.miit.gov.cn/')
+  window.open('https://beian.miit.gov.cn/')
 }
 
 </script>
@@ -71,6 +74,16 @@ const onGoto = () => {
   }
 
   & > div:nth-child(2) {
+    margin: 10px 40px;
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    color: #86909c;
+     &>img {
+       width: 100%;
+    }
+  }
+
+  & > div:nth-child(3) {
     margin: 10px 40px;
     padding: 15px;
     align-items: center;

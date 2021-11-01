@@ -11,7 +11,13 @@ import {collapsed} from 'view/home/hooks/headerData'
 import {computed} from 'vue'
 
 const props = defineProps({
-  visible:Boolean
+  visible:Boolean,
+  indexZ:{
+    type:Number,
+    default(){
+      return 100
+    }
+  }
 })
 
 const emits = defineEmits(['update:visible'])
@@ -23,6 +29,9 @@ const model_width = computed(()=>{
    return !collapsed.value ? `calc( 100% - 200px)` : `calc( 100% - 48px)`
 })
 
+const z_index = computed(()=>{
+  return props.indexZ
+})
 
 </script>
 
@@ -35,7 +44,7 @@ const model_width = computed(()=>{
   bottom: 0;
   right: 0;
   padding: 15px;
-  z-index: 100;
+  z-index: v-bind(z_index);
   background: rgb(255,255,255);
   transition: width ease 0.2s;
   transform: translate3d(0, 0, 0);

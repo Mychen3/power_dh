@@ -2,6 +2,8 @@ import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 // @ts-ignore
 import ViteComponents, {AntDesignVueResolver} from 'vite-plugin-components';
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+import Components from 'unplugin-vue-components/vite'
 import {resolve} from 'path'
 // @ts-ignore
 // import styleImport from 'vite-plugin-style-import';
@@ -12,6 +14,9 @@ export default defineConfig({
         ViteComponents({
             customComponentResolvers: [AntDesignVueResolver()],
             globalComponentsDeclaration: true,
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
         }),
 
         // 按需加载样式

@@ -21,21 +21,19 @@
       <v-md-editor ref='editorRef' v-model="editorData.editorText" @save="onEditorSave"
                    :height="editorHeight"></v-md-editor>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
 import {ref, reactive} from 'vue'
 import {ArticleType} from 'hk/labels'
-import addArticle from '../hooks/useAddArticle'
+import {getArticleDetail, updateArticleDetail} from '../hooks/articleList'
+import type {editorData as editorType} from '../hooks/articleList'
+import {message} from 'ant-design-vue'
 
-interface editorData {
-  editorText: string,
-  editorTitle: string
-  editorType: number | undefined | string
-}
-
+const {article_id} = defineProps({
+  article_id: Number
+})
 
 const emits = defineEmits(['close'])
 
@@ -43,7 +41,7 @@ const editorHeight = ref<number | string>(window.innerHeight - 135 + 'px')
 
 const editorRef = ref()
 
-const editorData = reactive<editorData>({
+const editorData = reactive<editorType>({
   editorText: '',
   editorTitle: '',
   editorType: undefined
@@ -61,10 +59,27 @@ const Close = () => {
   emits('close')
 }
 
-const onEditorSave = (): void => {
-  addArticle(editorData)
+const updateArticle = async (): Promise<void> => {
+  let articleDetail = await getArticleDetail(article_id)
+  if (articleDetail) {
+    editorData.editorTitle = articleDetail.article_title
+    editorData.editorText = articleDetail.article_content
+    editorData.editorType = articleDetail.article_type
+    showTag.value = articleDetail.article_type
+  }
 }
 
+const onEditorSave = async (): Promise<void> => {
+  editorData.article_id = article_id
+  let updateResult = await updateArticleDetail(editorData)
+  if (updateResult) {
+    message.success('修改成功')
+    Close()
+  } else {
+    message.error('修改失败')
+  }
+}
+updateArticle()
 
 </script>
 

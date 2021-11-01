@@ -57,7 +57,7 @@ const formatDate = (dateValue: string|undefined): string => {
 const formatContent = (strValue: string | null |any): string => {
   if (strValue !== null && strValue !== '') {
     const reg = /[\u4e00-\u9fa5]/g;
-    return (strValue.match(reg) as Array<string>).join('');
+    return (strValue.match(reg) as Array<string>)?.join('') ;
   }
   return '';
 }

@@ -1,4 +1,3 @@
-import {form_data} from './useFormData'
 import {addArticle_req} from 'api/article/article'
 import {message} from 'ant-design-vue'
 
@@ -27,6 +26,7 @@ const addArticle = async (editorData: editorData): Promise<void> => {
         message.warning('请选择分类')
     }
 }
+
 
 
 

@@ -13,6 +13,9 @@ declare module 'vue' {
     ACardGrid: typeof import('ant-design-vue/es')['CardGrid']
     ACardMeta: typeof import('ant-design-vue/es')['CardMeta']
     ACol: typeof import('ant-design-vue/es')['Col']
+    ACollapse: typeof import('ant-design-vue/es')['Collapse']
+    ACollapsePanel: typeof import('ant-design-vue/es')['CollapsePanel']
+    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     ADatePicker: typeof import('ant-design-vue/es')['DatePicker']
     ADivider: typeof import('ant-design-vue/es')['Divider']
     ADrawer: typeof import('ant-design-vue/es')['Drawer']
@@ -21,7 +24,9 @@ declare module 'vue' {
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AImage: typeof import('ant-design-vue/es')['Image']
     AInput: typeof import('ant-design-vue/es')['Input']
+    AInputNumber: typeof import('ant-design-vue/es')['InputNumber']
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    AInputSearch: typeof import('ant-design-vue/es')['InputSearch']
     ALayout: typeof import('ant-design-vue/es')['Layout']
     ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
     ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
@@ -48,6 +53,8 @@ declare module 'vue' {
     ATag: typeof import('ant-design-vue/es')['Tag']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
+    ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
+    ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
     BoxArticle: typeof import('./src/components/boxArticle.vue')['default']
     BoxCard: typeof import('./src/components/boxCard.vue')['default']
     CatalogueArticle: typeof import('./src/components/CatalogueArticle.vue')['default']
@@ -55,6 +62,7 @@ declare module 'vue' {
     LogInput: typeof import('./src/components/logInput.vue')['default']
     Mixmodel: typeof import('./src/components/Mixmodel.vue')['default']
     Usetx: typeof import('./src/components/usetx.vue')['default']
+    UtilBox: typeof import('./src/components/UtilBox.vue')['default']
   }
 }
 

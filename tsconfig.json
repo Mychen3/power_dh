@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "types": ["element-plus/global"],
+    "exclude": ["node_modules/**"],
+//    "skipLibCheck": true,
+    "linterOptions": {
+      "exclude": ["node_modules/**"]
+    },
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",

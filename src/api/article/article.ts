@@ -10,3 +10,8 @@ export const ArticleId_req = http('/article/queryIdArticle','get')
 export const queryRandom_req = http('/article/queryRandom','get')
 // 根据类型查询文章列表
 export const queryTypeList_req = http('/article/queryType','get')
+// 查询文章列表 分页
+export const getQueryArticleList = http('/article/queryPageType','get')
+//
+export const updateArticle = http('/article/updateIdArticle','post')
+

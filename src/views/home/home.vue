@@ -71,7 +71,7 @@ import {login} from 'ass/pictureData'
 import {MENU_NAME} from '@/config/nameConfig'
 import showone_level from '@/router/hooks/useRouter'
 import IconFont from '@/hooks/usemenuicon'
-import { watch} from 'vue'
+import {watch} from 'vue'
 import {useRouter} from 'vue-router'
 
 
@@ -82,7 +82,6 @@ const goRouter = (item: { key: string }, key: any, keyPath: string) => {
     name: item.key
   })
 }
-
 
 
 // 触发响应式布局断点时的回调
@@ -121,7 +120,7 @@ watch(brokenData, (newV: boolean): void => {
 .componentSty::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 10px;
-  background-color: rgb(191,191,191);
+  background-color: rgb(191, 191, 191);
   background-image: -webkit-linear-gradient(
           45deg,
           rgba(255, 255, 255, 0.2) 25%,
@@ -140,7 +139,6 @@ watch(brokenData, (newV: boolean): void => {
   background: #ededed;
   border-radius: 10px;
 }
-
 
 
 .leftgo-enter-from,
@@ -166,5 +164,11 @@ watch(brokenData, (newV: boolean): void => {
   z-index: 2;
 }
 
+@media screen and (max-width: 991.98px) {
+  .ant-layout-content {
+    height: 100%;
+  }
+
+}
 
 </style>

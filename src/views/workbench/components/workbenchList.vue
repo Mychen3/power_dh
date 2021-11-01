@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, reactive, ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import {taskImg} from 'ass/pictureData'
-import {getDayTask_req,successTask_req} from 'api/task/task'
+import {successTask_req} from 'api/task/task'
 import dayjs from "dayjs";
 import {message} from 'ant-design-vue'
 import { getDayList, list_data} from '../hooks/useGetDayList'

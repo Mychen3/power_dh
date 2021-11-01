@@ -67,9 +67,9 @@
           <icon-font :style="{ fontSize: '20px' }" type="icon-bianxie"/>
           <div>发布文章</div>
         </a-card-grid>
-        <a-card-grid class="card-tool">
-          <icon-font :style="{ fontSize: '20px' }" type="icon-dengdai"/>
-          <div>暂无工具</div>
+        <a-card-grid class="card-tool" @click="showArticleList = true">
+          <icon-font :style="{ fontSize: '20px' }" type="icon-wenzhang"/>
+          <div>文章列表</div>
         </a-card-grid>
       </a-card>
       <div class="work-img">
@@ -87,7 +87,10 @@
       <mixmodel v-model:visible="showTaskList">
         <TaskList @close="close"></TaskList>
       </mixmodel>
-
+     <!--文章列表 -->
+      <mixmodel v-model:visible="showArticleList">
+         <ArticleList @close="close" ></ArticleList>
+      </mixmodel>
       <mixmodel v-model:visible="showArticle">
         <Article @close="showArticle=false"></Article>
       </mixmodel>
@@ -119,16 +122,19 @@ import type {validateType} from '../hooks/formdata'
 import {randomCard, getRandomCard} from '@/hooks/useGetRandomCard'
 import TaskList from './Tasklist.vue'
 import  Article from './Article.vue'
+import ArticleList from "./articleList.vue";
 import {onBeforeRouteLeave} from 'vue-router'
 
 // 控制任务表格显示隐藏
 const showTaskList = ref<boolean>(false)
 // 控制文章发布显示隐藏
 const showArticle = ref<boolean>(false)
-
+// 控制文章列表
+const showArticleList =ref<boolean>(false)
 // 关闭任务列表页
 const close = () => {
   showTaskList.value = false
+  showArticleList.value = false
 }
 
 const icon = IconFont
@@ -169,6 +175,7 @@ const onShowNav = (): void => {
 onBeforeRouteLeave((to, from) => {
   showTaskList.value = false
   showArticle.value =false
+  showArticleList.value = false
 })
 
 
