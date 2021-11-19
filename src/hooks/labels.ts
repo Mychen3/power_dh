@@ -56,5 +56,10 @@ export const cardType:{name:string,val:string}[] = [
     {
         name:'工具相关',
         val:'7'
-    }
+    },
+    {
+        name:'工程化',
+        val:'8'
+    },
+
     ]

@@ -138,6 +138,14 @@ const routes: router[] = [
                     title:'工具相关'
                 },
                 component: () => import ("view/webdevelop/utils/utils.vue")
+            },
+            {
+                path: 'engineering',
+                name: 'engineering',
+                meta:{
+                    title:'工程化'
+                },
+                component: () => import ("view/webdevelop/engineering/engineering.vue")
             }
         ]
     },
